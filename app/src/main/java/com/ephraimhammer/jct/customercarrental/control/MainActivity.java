@@ -1,4 +1,4 @@
-package com.ephraimhammer.jct.customercarrental;
+package com.ephraimhammer.jct.customercarrental.control;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+
+import com.ephraimhammer.jct.customercarrental.R;
+import com.ephraimhammer.jct.customercarrental.control.BranchsModels;
+import com.ephraimhammer.jct.customercarrental.control.CarsBanches;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

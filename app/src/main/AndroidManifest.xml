@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".control.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,11 +20,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CarsBanches"
+            android:name=".control.CarsBanches"
             android:label="@string/title_activity_cars_banches"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".BranchsModels"
+            android:name=".control.BranchsModels"
             android:label="@string/title_activity_branchs_models"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
