@@ -24,7 +24,9 @@ public interface DB_Manager {
     List<Branch> getBranchs();
     List<Car> getFreeCars();
     List<Car> getFreeCarsPerBranch(long idBranch);
-    List<Car> getFreeCarsByKilometereRange(int range);
+
+
+    List<Car> getFreeCarsByKilometereRange(int range, int sector);
 
     long addCommand(ContentValues command);
     boolean closeCommand(ContentValues command);

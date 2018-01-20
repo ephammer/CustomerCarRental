@@ -4,19 +4,24 @@ import android.content.ContentValues;
 
 
 import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
+import com.ephraimhammer.jct.customercarrental.model.backend.DB_Manager;
+import com.ephraimhammer.jct.customercarrental.model.entities.BRAND;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
-import com.ephraimhammer.jct.customercarrental.model.backend.DB_Manager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const.CarModelConst.COLOR;
+import static com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const.CarModelConst.DOOR;
+import static com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const.CarModelConst.PASSENGERS;
 
 /**
  * Created by binyamin on 15/11/2017.
  */
 
-public  class List_DBManager implements DB_Manager {
+public class List_DBManager implements DB_Manager {
 
     private static final List_DBManager ourInstance = new List_DBManager();
 
@@ -24,7 +29,29 @@ public  class List_DBManager implements DB_Manager {
         return ourInstance;
     }
 
+    private static void initList() {
+
+
+        Client client = new Client("Bin", "Oliel","065676876","binoliel@",
+                "345678765433333","1234",2);
+        clientList.add(client);
+
+        Client client1 = new Client("Ephra", "Hammer","065676876","kidon@",
+                "345678765433333","1234",2);
+        clientList.add(client1);
+
+        Branch branch = new Branch("Paris", "Maubert", 5 , 21, 12);
+        branchList.add(branch);
+
+        Branch branch1 = new Branch("Marseille", "Maubert", 5 , 21, 12);
+        branchList.add(branch1);
+
+
+
+    }
+
     private List_DBManager() {
+
     }
 
     private static List<Branch> branchList;
@@ -37,6 +64,10 @@ public  class List_DBManager implements DB_Manager {
         branchList = new ArrayList<>();
         carList= new ArrayList<>();
         clientList= new ArrayList<>();
+
+        initList();
+
+
     }
 
     public interface Predicate<T> { boolean apply(T type); }
@@ -81,7 +112,6 @@ public  class List_DBManager implements DB_Manager {
     }
 
 
-
     @Override
     public boolean isClientExist( final long  id) {
 
@@ -102,6 +132,7 @@ public  class List_DBManager implements DB_Manager {
         return clientList;
     }
 
+
     @Override
     public List<Branch> getBranchs() {
         return branchList;
@@ -118,11 +149,9 @@ public  class List_DBManager implements DB_Manager {
     }
 
     @Override
-    public List<Car> getFreeCarsByKilometereRange(int range) {
+    public List<Car> getFreeCarsByKilometereRange(int range, int sector) {
         return null;
     }
-
-
 
 
 
@@ -140,5 +169,6 @@ public  class List_DBManager implements DB_Manager {
     public boolean isCommandClosedWithinTen() {
         return false;
     }
+
 
 }

@@ -26,7 +26,6 @@ class MySql_DBManager implements DB_Manager {
         return ourInstance;
     }
 
-    private String bb;
     private String WEB_URL = "http://obinyami.vlab.jct.ac.il/Academy";
     private String SLASH = "/";
 
@@ -177,17 +176,123 @@ class MySql_DBManager implements DB_Manager {
 
     @Override
     public List<Car> getFreeCars() {
-        return null;
+        List<Car> result = new ArrayList<>();
+
+
+
+        try
+        {
+            String str = PHPtools.GET(WEB_URL +  SLASH +"getFreeCars.php" );
+            JSONArray array = new  JSONObject(str).getJSONArray("car");
+
+            JSONObject jsonObject;
+            ContentValues contentValues1;
+            Car car;
+
+            for (int i = 0 ; i < array.length(); i++)
+            {
+                jsonObject = array.getJSONObject(i);
+                contentValues1 = PHPtools.JsonToContentValues(jsonObject);
+                car = Academy_Const.ContentValuesToCar(contentValues1);
+
+                result.add(car);
+
+            }
+            return result;
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
     public List<Car> getFreeCarsPerBranch(long idBranch) {
-        return null;
+        List<Car> result = new ArrayList<>();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Academy_Const.BranchConst.ID , idBranch );
+
+        try
+        {
+            String str = PHPtools.POST(WEB_URL +  SLASH +"getFreeCarByBranchId.php" , contentValues);
+            JSONArray array = new  JSONObject(str).getJSONArray("car");
+
+            JSONObject jsonObject;
+            ContentValues contentValues1;
+            Car car;
+
+            for (int i = 0 ; i < array.length(); i++)
+            {
+                jsonObject = array.getJSONObject(i);
+                contentValues1 = PHPtools.JsonToContentValues(jsonObject);
+                car = Academy_Const.ContentValuesToCar(contentValues1);
+
+                result.add(car);
+
+            }
+            return result;
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
-    public List<Car> getFreeCarsByKilometereRange(int range) {
-        return null;
+
+    // the first paramaeter is rangeKm: the  range in  Kilometers the client is looking for.
+    // the second parameter is sector: the current sector of the current client.
+     public List<Car> getFreeCarsByKilometereRange(int rangeKm, int sector) {
+
+        // One sector is 10 KM.
+        int numberOfSector = rangeKm / 10;
+
+        // the min is 0 , the max is 20.
+        int minRange  = (sector - numberOfSector >  0) ? sector - numberOfSector :  0 ;
+        int maxRange  = (sector + numberOfSector > 20) ? sector + numberOfSector : 20 ;
+
+        ContentValues contentValues = new  ContentValues();
+
+        contentValues.put("minRange" , minRange);
+        contentValues.put("maxRange" , maxRange);
+
+        List<Car> result = new ArrayList<>();
+        try
+        {
+            String str = PHPtools.POST(WEB_URL +  SLASH +"getFreeCarsByKilometerRange.php" , contentValues);
+            JSONArray array = new  JSONObject(str).getJSONArray("car");
+
+            JSONObject jsonObject;
+            ContentValues contentValues1;
+            Car car;
+
+            for (int i = 0 ; i < array.length(); i++)
+            {
+                jsonObject = array.getJSONObject(i);
+                contentValues1 = PHPtools.JsonToContentValues(jsonObject);
+                car = Academy_Const.ContentValuesToCar(contentValues1);
+
+                result.add(car);
+
+            }
+            return result;
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return result;
+
+
     }
 
     @Override
