@@ -8,6 +8,7 @@ import com.ephraimhammer.jct.customercarrental.model.backend.DB_Manager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
+import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -103,8 +104,38 @@ public class MySql_DBManager implements DB_Manager {
     }
 
     @Override
-    public boolean updateCar(ContentValues car) {
-        return false;
+    public boolean updateCarOnCloseCommand(ContentValues updateCar) {
+        try
+        {
+            String result = PHPtools.POST(WEB_URL + SLASH +"update_carCloseCommand.php", updateCar);
+            long id = Long.parseLong(result);
+
+            //Log.i("addClient: " , result);
+            return true;
+
+        }
+        catch (Exception e )
+        {
+            Log.e("closeCommandExcept: \n" , e.toString());
+            return  false;
+        }
+    }
+    public boolean updateCarOnOpenCommand(ContentValues updateCar)
+    {
+        try
+        {
+            String result = PHPtools.POST(WEB_URL + SLASH +"update_carOpenCommand.php", updateCar);
+            long id = Long.parseLong(result);
+
+            //Log.i("addClient: " , result);
+            return true;
+
+        }
+        catch (Exception e )
+        {
+            Log.e("closeCommandExcept: \n" , e.toString());
+            return  false;
+        }
     }
 
     @Override
@@ -246,7 +277,6 @@ public class MySql_DBManager implements DB_Manager {
     }
 
     @Override
-
     // the first paramaeter is rangeKm: the  range in  Kilometers the client is looking for.
     // the second parameter is sector: the current sector of the current client.
      public List<Car> getFreeCarsByKilometereRange(int rangeKm, int sector) {
@@ -314,10 +344,10 @@ public class MySql_DBManager implements DB_Manager {
     }
 
     @Override
-    public boolean closeCommand(ContentValues command) {
+    public boolean closeCommand(ContentValues updateCommand) {
         try
         {
-            String result = PHPtools.POST(WEB_URL + SLASH +"update_command.php", command);
+            String result = PHPtools.POST(WEB_URL + SLASH +"update_command.php", updateCommand);
             long id = Long.parseLong(result);
 
             //Log.i("addClient: " , result);
@@ -329,6 +359,42 @@ public class MySql_DBManager implements DB_Manager {
             Log.e("closeCommandExcept: \n" , e.toString());
             return  false;
         }
+    }
+
+    @Override
+    public List<Command> getCommandByClient(long idClient) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Academy_Const.CommandConst.CLIENT_ID, idClient);
+
+        List<Command> result = new ArrayList<>();
+        try
+        {
+            String str = PHPtools.POST(WEB_URL + SLASH +"getCommandByClientId.php" , contentValues);
+            JSONArray array = new JSONObject(str).getJSONArray("command");
+
+            JSONObject jsonObject;
+            ContentValues contentValues1;
+            Command command;
+
+            for (int i = 0 ; i < array.length(); i++)
+            {
+                jsonObject = array.getJSONObject(i);
+                contentValues1 = PHPtools.JsonToContentValues(jsonObject);
+                command = Academy_Const.ContentValuesToCommand(contentValues);
+
+                result.add(command);
+
+            }
+            return result;
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
