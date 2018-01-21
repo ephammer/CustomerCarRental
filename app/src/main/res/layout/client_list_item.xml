@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+        <TextView
+            android:id="@+id/labelLastNameTextView"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/labelFirstNameTextView"
+            android:layout_alignStart="@+id/labelFirstNameTextView"
+            android:layout_below="@+id/labelFirstNameTextView"
+            android:text="@string/last_name" />
+
+        <TextView
+            android:id="@+id/LastNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_name"
+            android:layout_marginRight="26dp"
+            />
+
+        <TextView
+            android:id="@+id/labelFirstNameTextView"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:text="@string/first_name"
+           />
+        <TextView
+            android:id="@+id/firstNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/first_name" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp"
+        >
+
+        <TextView
+            android:id="@+id/labelPhoneTextView"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+
+            android:text="Phone: " />
+
+        <TextView
+            android:id="@+id/PhoneTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_phone" />
+
+        <TextView
+            android:id="@+id/labelSectorTextView"
+            android:layout_marginLeft="26dp"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+
+            android:text="Sector: " />
+
+        <TextView
+            android:id="@+id/sectorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="0"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+        android:layout_marginTop="6dp"
+
+        >
+    <TextView
+        android:id="@+id/labelEmailTextView"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+
+
+        android:text="Email: " />
+    <TextView
+        android:id="@+id/EmailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_email" />
+
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp"
+        >
+        <TextView
+            android:id="@+id/LabelCCTextView"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:text="CreditCard: " />
+        <TextView
+            android:id="@+id/CreditCardTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_credit_card" />
+    </LinearLayout>
+
+</LinearLayout>

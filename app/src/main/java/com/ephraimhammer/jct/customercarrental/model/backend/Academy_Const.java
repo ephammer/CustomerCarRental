@@ -33,9 +33,9 @@ public class Academy_Const {
     public static class CarConst
     {
         public static final String ID = "_id";
-        public static final String TYPE_MODEL_ID = "typeModel";
+        public static final String TYPE_MODEL_ID = "idModelCar";
         public static final String KILOMETRE = "kilometre";
-        public static final String BRANCH_ID_PARKED = "branchIdParked";
+        public static final String BRANCH_ID_PARKED = "idBranchParked";
         public static final String ISFREE = "isfree";
 
     }

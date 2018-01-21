@@ -14,15 +14,13 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import com.ephraimhammer.jct.customercarrental.R;
-import com.ephraimhammer.jct.customercarrental.control.BranchsModels;
-import com.ephraimhammer.jct.customercarrental.control.CarsBanches;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Button mButtonCarsPerBranch;
-    Button mButtonBranchesPerModel;
-    Button mButtonFreeUsedCar;
+    Button mButtonFreeCarsByBranch;
+    Button mButtonFreeCars;
+    Button mButtonFreeCarsByRangeKm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,27 +41,38 @@ public class MainActivity extends AppCompatActivity
         /*
         * Initialize UI Elements
         */
-        mButtonCarsPerBranch = findViewById(R.id.button_car_branch);
-        mButtonBranchesPerModel = findViewById(R.id.button_branch_model);
-        mButtonFreeUsedCar = findViewById(R.id.button_free_used_car);
+        mButtonFreeCarsByBranch = findViewById(R.id.button_free_cars_by_branch);
+        mButtonFreeCars = findViewById(R.id.button_free_cars);
+        mButtonFreeCarsByRangeKm = findViewById(R.id.button_free_cars_by_rangeKm);
 
         /*
         * Set OnClickListeners
         */
-        mButtonCarsPerBranch.setOnClickListener(new View.OnClickListener() {
+        mButtonFreeCarsByBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mCarsPerBranchActivity = new Intent(getApplicationContext(), CarsBanches.class);
+                Intent mCarsPerBranchActivity = new Intent(getApplicationContext(), CarListActivity.class);
+                mCarsPerBranchActivity.putExtra("type", SEARCH_CAR_TYPE.FREE_CARS_BY_BRANCH );
                 startActivity(mCarsPerBranchActivity);
             }
         });
-        mButtonBranchesPerModel.setOnClickListener(new View.OnClickListener() {
+        mButtonFreeCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mBranchesPerModelActivty = new Intent(getApplicationContext(), BranchsModels.class);
-                startActivity(mBranchesPerModelActivty);
+                Intent mFreeCars = new Intent(getApplicationContext(), CarListActivity.class);
+                mFreeCars.putExtra("type" , SEARCH_CAR_TYPE.FREE_CARS);
+                startActivity(mFreeCars);
             }
         });
+        mButtonFreeCarsByRangeKm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mFreeCarsByRangeKm = new Intent(getApplicationContext() , CarListActivity.class );
+                mFreeCarsByRangeKm.putExtra("type", SEARCH_CAR_TYPE.FREE_CARS_BY_RANGE_KM);
+                startActivity(mFreeCarsByRangeKm);
+            }
+        });
+
     }
 
     @Override

@@ -19,10 +19,10 @@ import java.util.List;
  * Created by binyamin on 17/01/2018.
  */
 
-class MySql_DBManager implements DB_Manager {
+public class MySql_DBManager implements DB_Manager {
     private static final MySql_DBManager ourInstance = new MySql_DBManager();
 
-    static MySql_DBManager getInstance() {
+    public static MySql_DBManager getInstance() {
         return ourInstance;
     }
 
@@ -297,12 +297,38 @@ class MySql_DBManager implements DB_Manager {
 
     @Override
     public long addCommand(ContentValues command) {
-        return 0;
+        try
+        {
+            String result = PHPtools.POST(WEB_URL + SLASH +"add_command.php", command);
+            long id = Long.parseLong(result);
+
+            //Log.i("addClient: " , result);
+            return id;
+
+        }
+        catch (Exception e )
+        {
+            Log.e("addCommandException: \n" , e.toString());
+            return  -1;
+        }
     }
 
     @Override
     public boolean closeCommand(ContentValues command) {
-        return false;
+        try
+        {
+            String result = PHPtools.POST(WEB_URL + SLASH +"update_command.php", command);
+            long id = Long.parseLong(result);
+
+            //Log.i("addClient: " , result);
+            return true;
+
+        }
+        catch (Exception e )
+        {
+            Log.e("closeCommandExcept: \n" , e.toString());
+            return  false;
+        }
     }
 
     @Override

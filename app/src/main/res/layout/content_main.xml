@@ -10,7 +10,7 @@
     tools:showIn="@layout/app_bar_main">
 
     <Button
-        android:id="@+id/button_car_branch"
+        android:id="@+id/button_free_cars_by_branch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -22,25 +22,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_branch_model"
+        android:id="@+id/button_free_cars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/display_branches_per_model"
-        app:layout_constraintEnd_toEndOf="@+id/button_car_branch"
-        app:layout_constraintStart_toStartOf="@+id/button_car_branch"
-        app:layout_constraintTop_toBottomOf="@+id/button_car_branch" />
+        app:layout_constraintEnd_toEndOf="@+id/button_free_cars_by_branch"
+        app:layout_constraintStart_toStartOf="@+id/button_free_cars_by_branch"
+        app:layout_constraintTop_toBottomOf="@+id/button_free_cars_by_branch" />
 
     <Button
-        android:id="@+id/button_free_used_car"
+        android:id="@+id/button_free_cars_by_rangeKm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/free_used_car"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button_branch_model"
-        app:layout_constraintTop_toBottomOf="@+id/button_branch_model" />
+        app:layout_constraintStart_toStartOf="@+id/button_free_cars"
+        app:layout_constraintTop_toBottomOf="@+id/button_free_cars" />
 </android.support.constraint.ConstraintLayout>
