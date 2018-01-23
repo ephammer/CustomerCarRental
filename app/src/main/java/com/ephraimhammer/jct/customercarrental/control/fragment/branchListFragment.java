@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.control.other.Task;
@@ -20,8 +21,17 @@ public class branchListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.branch_list_fragment, container, false);
 
-         new Task.BranchSimpleListTask(getActivity()).execute();
+        new Task.BranchSimpleListTask(getActivity()).execute();
+
+
 
         return view;
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+
+
+        super.onListItemClick(l, v, position, id);
     }
 }

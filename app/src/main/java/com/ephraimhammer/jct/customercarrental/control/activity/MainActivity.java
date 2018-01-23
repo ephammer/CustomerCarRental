@@ -14,23 +14,41 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.TableRow;
 
 import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.control.fragment.HomeFragment;
+import com.ephraimhammer.jct.customercarrental.control.fragment.detailsBranchFragment;
+import com.ephraimhammer.jct.customercarrental.control.other.COMUNICATE_BTWN_FRAG;
+import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicateFragment;
 import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
 import com.ephraimhammer.jct.customercarrental.control.fragment.CarFreeListFragment;
 import com.ephraimhammer.jct.customercarrental.control.fragment.branchListFragment;
+import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
+import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.Objects;
+
+public class MainActivity extends AppCompatActivity implements IsAbleToCommunicateFragment
+
+{
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
+
+    private Branch branch;
 
 
     //To know the index of the nav Pressed.
     public static int navItemIndex = 0;
 
+
+
+    private static final String BRANCH_DETAIL = "branch_detail";
+    private static final String CAR_DETAIL = "car_detail";
+
+    private static  String DETAIL_ITEM_TO_DISPLAY = "";
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
@@ -38,7 +56,6 @@ public class MainActivity extends AppCompatActivity
 
     //CurrentTag can change.
     public static String CURRENT_TAG = TAG_HOME;
-
 
 
     //Get the fragment that should be displayed in the Home context
@@ -55,12 +72,39 @@ public class MainActivity extends AppCompatActivity
                 branchListFragment branchListFragment = new branchListFragment();
                 return branchListFragment;
 
-            default: return new HomeFragment();
-
-
+            default:
+                return new HomeFragment();
 
 
         }
+    }
+
+    private Fragment getDetailFragment()
+    {
+     switch(DETAIL_ITEM_TO_DISPLAY)
+     {
+         case CAR_DETAIL:
+             return null;
+         case BRANCH_DETAIL:
+             detailsBranchFragment branchdetailFragment = new detailsBranchFragment();
+             branchdetailFragment.setBranch(branch);
+             return branchdetailFragment;
+
+             default: return null;
+     }
+
+
+    }
+
+    private void loadDetailFragment()
+    {
+
+        // update the main content by replacing fragments
+        Fragment fragment = getDetailFragment();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        //fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+        fragmentTransaction.replace(R.id.detailFrame, fragment);
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     // load the fragment IN the Home context via beginTransaction...
@@ -80,7 +124,6 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = getHomeFragment();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         //fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-
         fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
         fragmentTransaction.commitAllowingStateLoss();
 
@@ -98,7 +141,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +155,9 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
+        // initializing navigation menu
+        setUpNavigationView();
 
 
         // By default, the fragment to display is the Home fragment
@@ -122,7 +166,6 @@ public class MainActivity extends AppCompatActivity
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment();
         }
-
 
 
     }
@@ -159,35 +202,75 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+
+    private void setUpNavigationView() {
+        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+            public boolean onNavigationItemSelected(MenuItem item) {
+                // Handle navigation view item clicks here.
+                int id = item.getItemId();
+
+                if (id == R.id.nav_home) {
+
+                    navItemIndex = 0;
+                    CURRENT_TAG = TAG_HOME;
+                    // Handle the camera action
+
+                } else if (id == R.id.nav_list_branch) {
+
+                    navItemIndex = 1;
+                    CURRENT_TAG = TAG_BRANCH_LIST;
+
+                } else if (id == R.id.nav_send) {
+
+                } else if (id == R.id.nav_login) {
+
+                }
+                //Checking if the item is in checked state or not, if not make it in checked state
+
+
+                item.setChecked(item.isChecked() ? false : true);
+                item.setChecked(true);
+
+
+                loadHomeFragment();
+
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
+
+    }
+
+
+    public void displaydetail()
+    {
+        //Set the Frame to be Visible
+        FrameLayout frameLayoutdetail = (FrameLayout) findViewById(R.id.detailFrame);
+        frameLayoutdetail.setVisibility(View.VISIBLE);
+
+        //reset the weight of the List layout.
+        TableRow.LayoutParams params = new TableRow.LayoutParams();
+        params.weight = 0.2f;
+        params.height = 0;
+        FrameLayout frameLayoutList= (FrameLayout)findViewById(R.id.frame);
+        frameLayoutList.setLayoutParams(params);
+        loadDetailFragment();
+    }
+
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+    public void sendData(COMUNICATE_BTWN_FRAG com, Object... data) {
 
-        if (id == R.id.nav_home) {
-
-            navItemIndex = 0;
-            CURRENT_TAG = TAG_HOME;
-            // Handle the camera action
-
-        } else if (id == R.id.nav_list_branch) {
-
-            navItemIndex = 1;
-            CURRENT_TAG = TAG_BRANCH_LIST;
-
-        }
-        else if (id == R.id.nav_send) {
-
-        }
-        else if (id == R.id.nav_login)
+        switch (com)
         {
-
+            case BRANCH_LIST_TO_BRANCH_DETAIL:
+                branch = (Branch) data[0];
+                DETAIL_ITEM_TO_DISPLAY = BRANCH_DETAIL;
         }
+        displaydetail();
 
 
-        loadHomeFragment();
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 }

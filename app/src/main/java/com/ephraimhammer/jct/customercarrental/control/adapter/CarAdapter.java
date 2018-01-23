@@ -1,7 +1,6 @@
 package com.ephraimhammer.jct.customercarrental.control.adapter;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -38,7 +37,7 @@ public class CarAdapter extends ArrayAdapter<Car> {
 
             if(listItemView1 == null) {
                 listItemView1 = LayoutInflater.from(getContext()).inflate(
-                        R.layout.car_list_item, parent, false);
+                        R.layout.car_simple_list_item_frag, parent, false);
             }
 
             final View  listItemView = listItemView1;

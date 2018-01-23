@@ -19,6 +19,10 @@ import java.util.Date;
 public class Academy_Const {
 
 
+    public static class CommunicateBetweenFragmentConst
+    {
+        public static final String BRANCH_LIST_TO_DETAIL_BRANCH = "branchListToDetailBranch";
+    }
     public static class BranchConst
     {
         public static final String ID = "_id";
