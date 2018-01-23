@@ -1,4 +1,4 @@
-package com.ephraimhammer.jct.customercarrental.control;
+package com.ephraimhammer.jct.customercarrental.control.other;
 
 /**
  * Created by binyamin on 21/01/2018.

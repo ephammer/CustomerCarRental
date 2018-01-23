@@ -9,6 +9,7 @@ import com.ephraimhammer.jct.customercarrental.model.entities.BRAND;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
+import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,7 @@ public class List_DBManager implements DB_Manager {
         return client.getClientId();
     }
 
-    @Override
+
     public boolean updateCar(ContentValues car) {
         return false;
     }
@@ -166,7 +167,22 @@ public class List_DBManager implements DB_Manager {
     }
 
     @Override
+    public List<Command> getCommandByClient(long idClient) {
+        return null;
+    }
+
+    @Override
     public boolean isCommandClosedWithinTen() {
+        return false;
+    }
+
+    @Override
+    public boolean updateCarOnCloseCommand(ContentValues updateCar) {
+        return false;
+    }
+
+    @Override
+    public boolean updateCarOnOpenCommand(ContentValues updateCar) {
         return false;
     }
 

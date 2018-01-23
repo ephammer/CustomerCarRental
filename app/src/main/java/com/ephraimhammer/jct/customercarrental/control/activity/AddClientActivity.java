@@ -1,4 +1,4 @@
-package com.ephraimhammer.jct.customercarrental.control;
+package com.ephraimhammer.jct.customercarrental.control.activity;
 
 import android.content.ContentValues;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 
 import com.ephraimhammer.jct.customercarrental.R;
+import com.ephraimhammer.jct.customercarrental.control.other.Task;
 import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
 
 import java.util.Random;

@@ -1,13 +1,13 @@
-package com.ephraimhammer.jct.customercarrental.control;
+package com.ephraimhammer.jct.customercarrental.control.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ListView;
 
 import com.ephraimhammer.jct.customercarrental.R;
+import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
+import com.ephraimhammer.jct.customercarrental.control.other.Task;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CarListActivity extends AppCompatActivity {

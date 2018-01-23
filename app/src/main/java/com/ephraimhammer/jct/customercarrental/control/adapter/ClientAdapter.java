@@ -1,4 +1,4 @@
-package com.ephraimhammer.jct.customercarrental.control;
+package com.ephraimhammer.jct.customercarrental.control.adapter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;

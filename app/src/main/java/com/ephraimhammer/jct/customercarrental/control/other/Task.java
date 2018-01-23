@@ -1,4 +1,4 @@
-package com.ephraimhammer.jct.customercarrental.control;
+package com.ephraimhammer.jct.customercarrental.control.other;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -9,7 +9,8 @@ import android.widget.Toast;
 
 
 import com.ephraimhammer.jct.customercarrental.R;
-import com.ephraimhammer.jct.customercarrental.model.datasource.List_DBManager;
+import com.ephraimhammer.jct.customercarrental.control.adapter.BranchSimpleAdapter;
+import com.ephraimhammer.jct.customercarrental.control.adapter.CarAdapter;
 import com.ephraimhammer.jct.customercarrental.model.datasource.MySql_DBManager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
@@ -17,8 +18,6 @@ import com.ephraimhammer.jct.customercarrental.model.entities.Client;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.ephraimhammer.jct.customercarrental.control.SEARCH_CAR_TYPE.FREE_CARS;
 
 
 /**
@@ -191,8 +190,31 @@ public class Task
             listView.setAdapter(itemAdapter);
         }
     }
-    public static class BranchListTask extends  AsyncTask<Void, Void, List<Branch>>
+    public static class BranchSimpleListTask extends AsyncTask<Void,Void,List<Branch>>
     {
+        Activity activity;
+
+        public BranchSimpleListTask(Activity activity) {
+            this.activity = activity;
+        }
+
+        @Override
+        protected List<Branch> doInBackground(Void... voids) {
+            return Manager.getBranchs();
+        }
+
+        @Override
+        protected void onPostExecute(List<Branch> branches) {
+            ArrayList<Branch> branchArrayList = new ArrayList<>(branches);
+            BranchSimpleAdapter branchSimpleAdapter =
+                    new BranchSimpleAdapter(activity , branchArrayList);
+            ListView listView = (ListView) activity.findViewById(R.id.rootViewBranchFragment);
+            listView.setAdapter(branchSimpleAdapter);
+        }
+    }
+    public static class BranchDetailsListTask extends  AsyncTask<Void, Void, List<Branch>>
+    {
+
 
         @Override
         protected List<Branch> doInBackground(Void... voids) {

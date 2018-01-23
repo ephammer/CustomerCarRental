@@ -4,6 +4,19 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Home"
+            ></item>
+
+        <item
+            android:id="@+id/nav_list_branch"
+            android:icon="@drawable/mini_car_icon"
+            android:title="Display Branches"
+            />
+
         <item
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_account_circle"
@@ -13,14 +26,14 @@
             android:icon="@drawable/ic_exit_to_app"
             android:title="@string/log_out" />
 
+
+
+
     </group>
 
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

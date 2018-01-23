@@ -3,6 +3,7 @@
     package="com.ephraimhammer.jct.customercarrental">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".control.MainActivity"
+            android:name=".control.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,12 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
-            android:name=".control.BranchsModels"
+            android:name=".control.other.BranchsModels"
             android:label="@string/title_activity_branchs_models"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".control.CarListActivity"></activity>
+        <activity android:name=".control.activity.CarListActivity" />
+        <activity android:name=".control.activity.branchSimpleListActivity"></activity>
     </application>
 
 </manifest>
