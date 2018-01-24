@@ -14,7 +14,6 @@ import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const.CarModelConst.COLOR;
 import static com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const.CarModelConst.DOOR;
 import static com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const.CarModelConst.PASSENGERS;
 

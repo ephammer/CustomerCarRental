@@ -54,13 +54,12 @@ public class CarAdapter extends ArrayAdapter<Car> {
 
             TextView kmTextView = (TextView) listItemView.findViewById(R.id.kmTextView);
             Switch isFreeSwitch = (Switch) listItemView.findViewById(R.id.isFreeSwitch);
-            TextView idTextView = (TextView) listItemView.findViewById(R.id.idtextView);
 
             // Get the version name from the current Word object and
             // set this text on the name TextView
 
           kmTextView.setText( Integer.toString(currentCar.getKilometre()));
-            idTextView.setText(Integer.toString((int) currentCar.getCarId()));
+
             isFreeSwitch.setChecked(currentCar.isFree() ? true : false);
             isFreeSwitch.setEnabled(false);
 
