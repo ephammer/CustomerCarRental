@@ -3,11 +3,15 @@ package com.ephraimhammer.jct.customercarrental.model.backend;
 import android.content.ContentValues;
 
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
+import com.ephraimhammer.jct.customercarrental.model.entities.CLASSE;
 import com.ephraimhammer.jct.customercarrental.model.entities.COMMAND_STATE;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
+import com.ephraimhammer.jct.customercarrental.model.entities.CarModel;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
 import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 import com.ephraimhammer.jct.customercarrental.model.entities.FUEL_STATE;
+import com.ephraimhammer.jct.customercarrental.model.entities.LUGGAGE;
+import com.ephraimhammer.jct.customercarrental.model.entities.PASSENGERS;
 
 import java.util.Date;
 
@@ -63,12 +67,13 @@ public class Academy_Const {
         public static final String COMPANY_NAME = "companyName";
         public static final String MODEL_NAME = "modelName";
         public static final String MOTOR_VOLUME = "motorVolume";
-        public static final String IS_AUTOMATIC= "isAutomatic";
+        public static final String IS_AUTOMATIC = "isAutomatic";
         public static final String PASSENGERS = "passengers";
         public static final String DOOR = "door";
         public static final String LUGAGE_COMPARTMENT = "lugageCompartment";
         public static final String AIR_C = "airC";
-        public static final String COLOR = "color";
+        public static final String CLASSE = "classe";
+        public static final String PRICE_DAY = "price_day";
 
 
     }
@@ -103,7 +108,30 @@ public class Academy_Const {
     }
 
 
+    public static CarModel ContentValuesToCarModel(ContentValues contentValues)
+    {
+        CarModel carModel = new CarModel();
 
+
+        //Sometimes(e.g : List_DBManager.addCarModel() )
+        // we translate the contentValue before we assign it an ID.
+        //So we need to check wether ID is Null or not
+        if(contentValues.getAsLong(CarModelConst.ID)!=null)
+            carModel.setModelId(contentValues.getAsLong(CarModelConst.ID));
+
+        carModel.setAirC(contentValues.getAsBoolean(CarModelConst.AIR_C));
+        carModel.setAutomatic( contentValues.getAsBoolean(CarModelConst.IS_AUTOMATIC));
+        carModel.setLuggageCompartment((LUGGAGE.valueOf(contentValues.getAsString(CarModelConst.LUGAGE_COMPARTMENT))));
+        carModel.setModelCompanyName(contentValues.getAsString(CarModelConst.COMPANY_NAME));
+        carModel.setModelName(contentValues.getAsString(CarModelConst.MODEL_NAME));
+        carModel.setPassengers((PASSENGERS.valueOf(contentValues.getAsString(CarModelConst.PASSENGERS))));
+        carModel.setClasse(CLASSE.valueOf(contentValues.getAsString(CarModelConst.CLASSE)));
+        carModel.setPriceDay();
+        carModel.setDoor();
+        carModel.setModelMotorVolume();
+
+        return carModel;
+    }
     public static ContentValues ClientToContentValues(Client client) {
         ContentValues contentValues = new ContentValues();
 
