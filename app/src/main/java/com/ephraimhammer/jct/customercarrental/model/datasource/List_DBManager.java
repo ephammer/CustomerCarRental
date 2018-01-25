@@ -166,7 +166,7 @@ public class List_DBManager implements DB_Manager {
     }
 
     @Override
-    public List isCommandClosedWithinTen(String date) {
+    public List isCommandClosedWithinTen() {
         return null;
     }
 

@@ -399,7 +399,7 @@ public class MySql_DBManager implements DB_Manager {
     }
 
     @Override
-    public List isCommandClosedWithinTen(String date) {
+    public List isCommandClosedWithinTen() {
         List<Car> result = new ArrayList<>();
 
 

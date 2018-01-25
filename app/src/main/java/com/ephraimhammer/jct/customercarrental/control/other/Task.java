@@ -250,9 +250,7 @@ public class Task
         @Override
         protected List doInBackground(Void... voids) {
 
-            String date = DateFormat.getDateTimeInstance().format(new Date());
-
-            return Manager.isCommandClosedWithinTen(date);
+            return Manager.isCommandClosedWithinTen();
         }
 
         @Override
@@ -266,8 +264,16 @@ public class Task
                 listView.setAdapter(itemAdapter);
 
                 Toast.makeText(context, "Car List Updated", Toast.LENGTH_SHORT).show();
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+                broadcastIntent.setAction("com.example.binyamin.android5778_0445_7734_01.BroadcastReceiver");
+                broadcastIntent.putExtra("Foo", "Bar");
+                context.sendBroadcast(broadcastIntent);
+                Toast.makeText(context, "BroadCast Send", Toast.LENGTH_SHORT).show();
 
             }
+            Toast.makeText(context, "Car List Not Updated", Toast.LENGTH_SHORT).show();
+
         }
     }
 }

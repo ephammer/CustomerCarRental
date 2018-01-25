@@ -25,6 +25,7 @@ import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicate
 import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
 import com.ephraimhammer.jct.customercarrental.control.fragment.CarFreeListFragment;
 import com.ephraimhammer.jct.customercarrental.control.fragment.branchListFragment;
+import com.ephraimhammer.jct.customercarrental.control.reservedCarUpdateService;
 import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 
@@ -272,5 +273,11 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
         displaydetail();
 
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(this, reservedCarUpdateService.class));
     }
 }

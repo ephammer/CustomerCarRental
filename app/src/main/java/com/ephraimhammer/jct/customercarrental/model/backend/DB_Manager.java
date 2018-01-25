@@ -31,7 +31,7 @@ public interface DB_Manager {
 
     long addCommand(ContentValues command);
     boolean closeCommand(ContentValues command);
-    List isCommandClosedWithinTen(String date);
+    List isCommandClosedWithinTen();
 
     public boolean updateCarOnCloseCommand(ContentValues updateCar);
     public boolean updateCarOnOpenCommand(ContentValues updateCar);

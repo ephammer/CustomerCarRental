@@ -3,15 +3,18 @@ package com.ephraimhammer.jct.customercarrental.control;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.ephraimhammer.jct.customercarrental.control.other.Task;
+import com.ephraimhammer.jct.customercarrental.model.entities.Car;
+
+import java.util.List;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
  * <p>
- * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
 public class reservedCarUpdateService extends IntentService {
@@ -20,20 +23,11 @@ public class reservedCarUpdateService extends IntentService {
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
-    /*public reservedCarUpdateService(String name) {
-        super(name);
-    }
-
-    @Override
-    protected void onHandleIntent(Intent intent) {
-        new Task.ReservedCarUpdateTask(this).execute();
-    }*/
-
-
 
     static int count = 1;
     int id = 0, startId = -1;
     boolean isRun = false;
+
     final String TAG = "reservedCarUpdateServic";
 
     public reservedCarUpdateService() {
@@ -45,7 +39,7 @@ public class reservedCarUpdateService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         while (isRun) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(10000);
                 new Task.ReservedCarUpdateTask(this).execute();
 
             } catch (InterruptedException e) {
