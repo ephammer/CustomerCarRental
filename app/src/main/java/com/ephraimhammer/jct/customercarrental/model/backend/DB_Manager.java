@@ -23,18 +23,18 @@ public interface DB_Manager {
 
     List<Client> getClients();
     List<Branch> getBranchs();
-
     List<Car> getFreeCars();
     List<Car> getFreeCarsPerBranch(long idBranch);
+
+
     List<Car> getFreeCarsByKilometereRange(int range, int sector);
 
     long addCommand(ContentValues command);
     boolean closeCommand(ContentValues command);
-    List<Command> getCommandByClient(long idClient);
-    boolean isCommandClosedWithinTen();
+    List isCommandClosedWithinTen(String date);
 
     public boolean updateCarOnCloseCommand(ContentValues updateCar);
     public boolean updateCarOnOpenCommand(ContentValues updateCar);
 
-
+    public List<Command> getCommandByClient(long idClient);
 }

@@ -166,13 +166,13 @@ public class List_DBManager implements DB_Manager {
     }
 
     @Override
-    public List<Command> getCommandByClient(long idClient) {
+    public List isCommandClosedWithinTen(String date) {
         return null;
     }
 
     @Override
-    public boolean isCommandClosedWithinTen() {
-        return false;
+    public List<Command> getCommandByClient(long idClient) {
+        return null;
     }
 
     @Override
@@ -184,6 +184,7 @@ public class List_DBManager implements DB_Manager {
     public boolean updateCarOnOpenCommand(ContentValues updateCar) {
         return false;
     }
+
 
 
 }
