@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
     private DrawerLayout drawer;
 
     private Branch branch;
+    private long carId;
 
 
     //To know the index of the nav Pressed.
@@ -48,7 +49,12 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
     private static final String BRANCH_DETAIL = "branch_detail";
     private static final String CAR_DETAIL = "car_detail";
 
+    private static final String BRANCH_REDIRECT = "branch_redirect";
+    private static final String CAR_REDIRECT = "car_redirect";
+
+
     private static  String DETAIL_ITEM_TO_DISPLAY = "";
+    private static String REDIRECT_ITEM_TI_DISPLAY= "";
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
@@ -96,6 +102,18 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
     }
 
+    private Fragment getRedirectFragment()
+    {
+        switch (REDIRECT_ITEM_TI_DISPLAY) {
+            case CAR_REDIRECT:
+                CarFreeListFragment carFreeListFragment = new CarFreeListFragment();
+                carFreeListFragment.setBranchId(branch.getBranchId());
+                return carFreeListFragment;
+
+            default:return null;
+        }
+    }
+
     private void loadDetailFragment()
     {
 
@@ -133,6 +151,15 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
         // refresh toolbar menu
         invalidateOptionsMenu();
+    }
+
+    private void loadRedirectFragment()
+    {
+        Fragment fragment = getRedirectFragment();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        //fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+        fragmentTransaction.replace(R.id.redirectFrame, fragment);
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     // Need for graphic  effect , when the item is clicked the background of the item change.
@@ -176,8 +203,28 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+
+            navItemIndex =0;
+            CURRENT_TAG =TAG_HOME;
+            resetDefaultConfiguration();
+            loadHomeFragment();
         }
+    }
+
+    private void resetDefaultConfiguration() {
+        FrameLayout frameLayoutdetail = (FrameLayout) findViewById(R.id.detailFrame);
+        frameLayoutdetail.setVisibility(View.GONE);
+
+        FrameLayout frameLayoutRedirect = (FrameLayout) findViewById(R.id.redirectFrame);
+        frameLayoutRedirect.setVisibility(View.GONE);
+
+        TableRow.LayoutParams params = new TableRow.LayoutParams();
+        params.weight = 1f;
+        params.height = 0;
+        FrameLayout frameLayoutList= (FrameLayout)findViewById(R.id.frame);
+        frameLayoutList.setLayoutParams(params);
+
     }
 
     @Override
@@ -253,11 +300,19 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
         //reset the weight of the List layout.
         TableRow.LayoutParams params = new TableRow.LayoutParams();
-        params.weight = 0.2f;
+        params.weight = 0.4f;
         params.height = 0;
         FrameLayout frameLayoutList= (FrameLayout)findViewById(R.id.frame);
         frameLayoutList.setLayoutParams(params);
         loadDetailFragment();
+    }
+    private void displayRedirect()
+    {
+        //Set the Frame to be Visible
+        FrameLayout frameLayoutRedirect = (FrameLayout) findViewById(R.id.redirectFrame);
+        frameLayoutRedirect.setVisibility(View.VISIBLE);
+
+        loadRedirectFragment();
     }
 
     @Override
@@ -268,7 +323,17 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
             case BRANCH_LIST_TO_BRANCH_DETAIL:
                 branch = (Branch) data[0];
                 DETAIL_ITEM_TO_DISPLAY = BRANCH_DETAIL;
+                REDIRECT_ITEM_TI_DISPLAY = CAR_REDIRECT;
                 displaydetail();
+                displayRedirect();
+                break;
+            case CAR_SIMPLE_LIST_TO_CAR_DETAIL_ACTIVITY:
+                carId = (long)data[0];
+                Intent addCommandIntent = new Intent();
+                addCommandIntent.putExtra(Academy_Const.BranchConst.ID , branch.getBranchId());
+                addCommandIntent.putExtra(Academy_Const.CarConst.ID , carId);
+                break;
+
 
         }
 
