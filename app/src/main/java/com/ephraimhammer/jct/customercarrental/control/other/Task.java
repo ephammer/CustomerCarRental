@@ -3,7 +3,9 @@ package com.ephraimhammer.jct.customercarrental.control.other;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,9 +18,10 @@ import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 
 /**
  * Created by binyamin on 21/11/2017.
@@ -236,7 +239,42 @@ public class Task
     }
 
 
+    public static class ReservedCarUpdateTask extends AsyncTask<Void, Void, List<Car>> {
+        Context context;
 
+        public ReservedCarUpdateTask(Context context) {
+            this.context = context;
+            doInBackground();
+        }
 
+        @Override
+        protected List doInBackground(Void... voids) {
+
+            return Manager.isCommandClosedWithinTen();
+        }
+
+        @Override
+        protected void onPostExecute(List<Car> cars) {
+            if (!cars.isEmpty()) {
+                ArrayList<Car> carsArrayList = new ArrayList<>(cars);
+
+                CarAdapter itemAdapter =
+                        new CarAdapter((Activity) context, carsArrayList);
+                ListView listView = ((Activity) context).findViewById(R.id.rootView);
+                listView.setAdapter(itemAdapter);
+
+                Toast.makeText(context, "Car List Updated", Toast.LENGTH_SHORT).show();
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+                broadcastIntent.setAction("com.example.binyamin.android5778_0445_7734_01.BroadcastReceiver");
+                broadcastIntent.putExtra("Foo", "Bar");
+                context.sendBroadcast(broadcastIntent);
+                Toast.makeText(context, "BroadCast Send", Toast.LENGTH_SHORT).show();
+
+            }
+            Toast.makeText(context, "Car List Not Updated", Toast.LENGTH_SHORT).show();
+
+        }
+    }
 }
 
