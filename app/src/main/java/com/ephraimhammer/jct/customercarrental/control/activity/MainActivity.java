@@ -216,8 +216,14 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
                 } else if (id == R.id.nav_send) {
                     composeEmail("contact@tapandgo.com");
                 } else if (id == R.id.nav_login) {
-
+                    startActivity(new Intent(getApplicationContext(), LogInActivity.class));
+                } else if (id == R.id.nav_webpage) {
+                    openWebPage("http://www.thinkhodl.com");
                 }
+                else if (id == R.id.nav_phone) {
+                    dialPhoneNumber("0584048820");
+                }
+
                 //Checking if the item is in checked state or not, if not make it in checked state
 
 
@@ -234,6 +240,24 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
 
     }
+
+    public void dialPhoneNumber(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+
+    public void openWebPage(String url) {
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
     public void composeEmail(String addresse) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this

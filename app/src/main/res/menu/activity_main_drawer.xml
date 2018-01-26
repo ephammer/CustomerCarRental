@@ -37,7 +37,15 @@
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="@string/contact_us" />
+                android:title="@string/email_us" />
+            <item
+                android:id="@+id/nav_webpage"
+                android:icon="@drawable/webpage"
+                android:title="@string/webpage" />
+            <item
+                android:id="@+id/nav_phone"
+                android:icon="@drawable/ic_phone"
+                android:title="@string/phone_us" />
         </menu>
     </item>
 

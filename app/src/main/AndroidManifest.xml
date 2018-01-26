@@ -32,9 +32,9 @@
         <receiver
             android:name=".control.other.FreeCarReceiver"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"></receiver>
 
-        </receiver>
+        <activity android:name=".control.activity.LogInActivity"></activity>
     </application>
 
 </manifest>
