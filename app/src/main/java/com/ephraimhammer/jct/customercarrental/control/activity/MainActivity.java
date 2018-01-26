@@ -1,10 +1,10 @@
 package com.ephraimhammer.jct.customercarrental.control.activity;
 
 import android.app.Fragment;
-import android.content.Intent;
-import android.os.Bundle;
 import android.app.FragmentTransaction;
-import android.view.View;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,22 +13,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TableRow;
 
 import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.control.fragment.HomeFragment;
+import com.ephraimhammer.jct.customercarrental.control.fragment.branchListFragment;
 import com.ephraimhammer.jct.customercarrental.control.fragment.detailsBranchFragment;
 import com.ephraimhammer.jct.customercarrental.control.other.COMUNICATE_BTWN_FRAG;
 import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicateFragment;
-import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
-import com.ephraimhammer.jct.customercarrental.control.fragment.CarFreeListFragment;
-import com.ephraimhammer.jct.customercarrental.control.fragment.branchListFragment;
-import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements IsAbleToCommunicateFragment
 
@@ -44,11 +40,10 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
     public static int navItemIndex = 0;
 
 
-
     private static final String BRANCH_DETAIL = "branch_detail";
     private static final String CAR_DETAIL = "car_detail";
 
-    private static  String DETAIL_ITEM_TO_DISPLAY = "";
+    private static String DETAIL_ITEM_TO_DISPLAY = "";
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
@@ -63,14 +58,12 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
         switch (navItemIndex) {
             case 0:
                 // home (in the meantime--)
-                HomeFragment homeFragment = new HomeFragment();
-                return homeFragment;
+                return new HomeFragment();
 
 
             case 1:
                 // branch List
-                branchListFragment branchListFragment = new branchListFragment();
-                return branchListFragment;
+                return new branchListFragment();
 
             default:
                 return new HomeFragment();
@@ -79,25 +72,23 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
         }
     }
 
-    private Fragment getDetailFragment()
-    {
-     switch(DETAIL_ITEM_TO_DISPLAY)
-     {
-         case CAR_DETAIL:
-             return null;
-         case BRANCH_DETAIL:
-             detailsBranchFragment branchdetailFragment = new detailsBranchFragment();
-             branchdetailFragment.setBranch(branch);
-             return branchdetailFragment;
+    private Fragment getDetailFragment() {
+        switch (DETAIL_ITEM_TO_DISPLAY) {
+            case CAR_DETAIL:
+                return null;
+            case BRANCH_DETAIL:
+                detailsBranchFragment branchdetailFragment = new detailsBranchFragment();
+                branchdetailFragment.setBranch(branch);
+                return branchdetailFragment;
 
-             default: return null;
-     }
+            default:
+                return null;
+        }
 
 
     }
 
-    private void loadDetailFragment()
-    {
+    private void loadDetailFragment() {
 
         // update the main content by replacing fragments
         Fragment fragment = getDetailFragment();
@@ -145,16 +136,16 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
 
         // initializing navigation menu
         setUpNavigationView();
@@ -172,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -223,14 +214,14 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
                     CURRENT_TAG = TAG_BRANCH_LIST;
 
                 } else if (id == R.id.nav_send) {
-
+                    composeEmail("contact@tapandgo.com");
                 } else if (id == R.id.nav_login) {
 
                 }
                 //Checking if the item is in checked state or not, if not make it in checked state
 
 
-                item.setChecked(item.isChecked() ? false : true);
+                item.setChecked(!item.isChecked());
                 item.setChecked(true);
 
 
@@ -243,19 +234,25 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
 
     }
+    public void composeEmail(String addresse) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresse);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
 
-
-    public void displaydetail()
-    {
+    public void displaydetail() {
         //Set the Frame to be Visible
-        FrameLayout frameLayoutdetail = (FrameLayout) findViewById(R.id.detailFrame);
+        FrameLayout frameLayoutdetail = findViewById(R.id.detailFrame);
         frameLayoutdetail.setVisibility(View.VISIBLE);
 
         //reset the weight of the List layout.
         TableRow.LayoutParams params = new TableRow.LayoutParams();
         params.weight = 0.2f;
         params.height = 0;
-        FrameLayout frameLayoutList= (FrameLayout)findViewById(R.id.frame);
+        FrameLayout frameLayoutList = findViewById(R.id.frame);
         frameLayoutList.setLayoutParams(params);
         loadDetailFragment();
     }
@@ -263,8 +260,7 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
     @Override
     public void sendData(COMUNICATE_BTWN_FRAG com, Object... data) {
 
-        switch (com)
-        {
+        switch (com) {
             case BRANCH_LIST_TO_BRANCH_DETAIL:
                 branch = (Branch) data[0];
                 DETAIL_ITEM_TO_DISPLAY = BRANCH_DETAIL;

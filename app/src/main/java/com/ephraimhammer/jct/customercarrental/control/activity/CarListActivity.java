@@ -1,10 +1,12 @@
 package com.ephraimhammer.jct.customercarrental.control.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.ephraimhammer.jct.customercarrental.R;
+import com.ephraimhammer.jct.customercarrental.control.other.FreeCarReceiver;
 import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
 import com.ephraimhammer.jct.customercarrental.control.other.Task;
 import com.ephraimhammer.jct.customercarrental.control.reservedCarUpdateService;
@@ -21,13 +23,14 @@ public class CarListActivity extends AppCompatActivity {
     int sector = 15;
     final String TAG = "CarListActivity";
     boolean isRun = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_list);
 
 
-        startService(new Intent( this,reservedCarUpdateService.class));
+        startService(new Intent(this, reservedCarUpdateService.class));
 
         search_car_type = (SEARCH_CAR_TYPE) getIntent().getExtras().get("type");
         SEARCH_CAR_TYPE searchCarType = (search_car_type);
@@ -45,8 +48,16 @@ public class CarListActivity extends AppCompatActivity {
 
         }
 
+        IntentFilter filter = new IntentFilter("com.example.binyamin.android5778_0445_7734_01.BroadcastReceiver");
+
+        FreeCarReceiver myReceiver = new FreeCarReceiver();
+        registerReceiver(myReceiver, filter);
 
 
+    }
+
+    public void refreshCarsList() {
+        new Task.FreeCarListTask(this).execute();
 
     }
 

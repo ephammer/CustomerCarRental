@@ -33,9 +33,7 @@
             android:name=".control.other.FreeCarReceiver"
             android:enabled="true"
             android:exported="true">
-            <intent-filter>
-                <action android:name="com.example.binyamin.android5778_0445_7734_01.BroadcastReceiver" />
-            </intent-filter>
+
         </receiver>
     </application>
 
