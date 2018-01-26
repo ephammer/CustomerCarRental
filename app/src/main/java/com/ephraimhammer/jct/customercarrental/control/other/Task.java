@@ -256,13 +256,6 @@ public class Task
         @Override
         protected void onPostExecute(List<Car> cars) {
             if (!cars.isEmpty()) {
-                ArrayList<Car> carsArrayList = new ArrayList<>(cars);
-
-                CarAdapter itemAdapter =
-                        new CarAdapter((Activity) context, carsArrayList);
-                ListView listView = ((Activity) context).findViewById(R.id.rootView);
-                listView.setAdapter(itemAdapter);
-
                 Toast.makeText(context, "Car List Updated", Toast.LENGTH_SHORT).show();
                 Intent broadcastIntent = new Intent();
                 broadcastIntent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
