@@ -24,20 +24,20 @@ public interface DB_Manager {
 
     List<Client> getClients();
     List<Branch> getBranchs();
-
     List<Car> getFreeCars();
     List<Car> getFreeCarsPerBranch(long idBranch);
+
+
     List<Car> getFreeCarsByKilometereRange(int range, int sector);
 
     CarModel getCarModelById(long id);
 
     long addCommand(ContentValues command);
     boolean closeCommand(ContentValues command);
-    List<Command> getCommandByClient(long idClient);
-    boolean isCommandClosedWithinTen();
+    List isCommandClosedWithinTen();
 
     public boolean updateCarOnCloseCommand(ContentValues updateCar);
     public boolean updateCarOnOpenCommand(ContentValues updateCar);
 
-
+    public List<Command> getCommandByClient(long idClient);
 }

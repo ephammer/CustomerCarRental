@@ -25,6 +25,11 @@
             android:name=".control.other.BranchsModels"
             android:label="@string/title_activity_branchs_models"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".control.CarListActivity" />
+
+        <service
+            android:name=".control.reservedCarUpdateService"
+            android:exported="false"></service>
         <activity android:name=".control.activity.CarListActivity" />
         <activity android:name=".control.activity.branchSimpleListActivity" />
         <activity android:name=".control.activity.AddCommandActivity"></activity>
