@@ -268,8 +268,9 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
             case BRANCH_LIST_TO_BRANCH_DETAIL:
                 branch = (Branch) data[0];
                 DETAIL_ITEM_TO_DISPLAY = BRANCH_DETAIL;
+                displaydetail();
+
         }
-        displaydetail();
 
 
     }
