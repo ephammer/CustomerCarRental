@@ -4,6 +4,7 @@ import android.content.ContentValues;
 
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
+import com.ephraimhammer.jct.customercarrental.model.entities.CarModel;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
 import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 
@@ -27,6 +28,8 @@ public interface DB_Manager {
     List<Car> getFreeCars();
     List<Car> getFreeCarsPerBranch(long idBranch);
     List<Car> getFreeCarsByKilometereRange(int range, int sector);
+
+    CarModel getCarModelById(long id);
 
     long addCommand(ContentValues command);
     boolean closeCommand(ContentValues command);

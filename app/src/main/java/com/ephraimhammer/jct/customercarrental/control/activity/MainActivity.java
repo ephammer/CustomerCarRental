@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
 {
 
+
     private NavigationView navigationView;
     private DrawerLayout drawer;
 
@@ -48,7 +49,12 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
     private static final String BRANCH_DETAIL = "branch_detail";
     private static final String CAR_DETAIL = "car_detail";
 
+    private static final String CAR_REDIRECT = "car_redirect";
+    private static final String BRANCH_REDIRECT = "branch_redirect";
+
     private static  String DETAIL_ITEM_TO_DISPLAY = "";
+    private static String REDIRECT_ITEM_TO_DISPLAY = "";
+
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
@@ -96,6 +102,21 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
     }
 
+    private Fragment getRedirectFragment()
+    {
+        switch(REDIRECT_ITEM_TO_DISPLAY)
+        {
+            case BRANCH_REDIRECT:
+                return null;
+            case CAR_REDIRECT:
+                CarFreeListFragment carFreeListFragment = new CarFreeListFragment();
+                carFreeListFragment.setBranchId(branch.getBranchId());
+                return carFreeListFragment;
+
+            default: return null;
+        }
+    }
+
     private void loadDetailFragment()
     {
 
@@ -133,6 +154,15 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
         // refresh toolbar menu
         invalidateOptionsMenu();
+    }
+
+    private void loadDisplayFragment() {
+
+        Fragment fragment = getRedirectFragment();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        //fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+        fragmentTransaction.replace(R.id.redirectFrame, fragment);
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     // Need for graphic  effect , when the item is clicked the background of the item change.
@@ -176,7 +206,10 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            navItemIndex = 0;
+            CURRENT_TAG = TAG_HOME;
+            resetFirstParameters();
+            loadHomeFragment();
         }
     }
 
@@ -250,14 +283,47 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
         //Set the Frame to be Visible
         FrameLayout frameLayoutdetail = (FrameLayout) findViewById(R.id.detailFrame);
         frameLayoutdetail.setVisibility(View.VISIBLE);
+        setMainListViewParameters();
+        loadDetailFragment();
+    }
 
+    public void displayRedirect()
+    {
+        FrameLayout frameLayoutredirect = (FrameLayout) findViewById(R.id.redirectFrame);
+        frameLayoutredirect.setVisibility(View.VISIBLE);
+        loadDisplayFragment();
+
+    }
+
+
+    private void setMainListViewParameters()
+    {
         //reset the weight of the List layout.
         TableRow.LayoutParams params = new TableRow.LayoutParams();
-        params.weight = 0.2f;
+        params.weight = 0.35f;
         params.height = 0;
+        params.bottomMargin = params.leftMargin = params.rightMargin = params.topMargin = 4;
         FrameLayout frameLayoutList= (FrameLayout)findViewById(R.id.frame);
         frameLayoutList.setLayoutParams(params);
-        loadDetailFragment();
+    }
+
+    //Reset the parameters as the begining of the activity
+    private void resetFirstParameters()
+    {
+        FrameLayout frameLayoutdetail = (FrameLayout) findViewById(R.id.detailFrame);
+        FrameLayout frameLayoutredirect = (FrameLayout) findViewById(R.id.redirectFrame);
+        FrameLayout frameLayoutList= (FrameLayout)findViewById(R.id.frame);
+
+        frameLayoutdetail.setVisibility(View.GONE);
+        frameLayoutredirect.setVisibility(View.GONE);
+        TableRow.LayoutParams params = new TableRow.LayoutParams();
+        params.weight = 1f;
+        params.height = 0;
+        params.bottomMargin = params.leftMargin = params.rightMargin = params.topMargin = 4;
+        frameLayoutList.setLayoutParams(params);
+
+
+
     }
 
     @Override
@@ -268,9 +334,15 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
             case BRANCH_LIST_TO_BRANCH_DETAIL:
                 branch = (Branch) data[0];
                 DETAIL_ITEM_TO_DISPLAY = BRANCH_DETAIL;
+                REDIRECT_ITEM_TO_DISPLAY = CAR_REDIRECT;
+                displaydetail();
+                displayRedirect();
+
         }
-        displaydetail();
 
 
     }
+
+
+
 }

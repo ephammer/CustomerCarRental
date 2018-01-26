@@ -37,7 +37,7 @@ public class CarAdapter extends ArrayAdapter<Car> {
 
             if(listItemView1 == null) {
                 listItemView1 = LayoutInflater.from(getContext()).inflate(
-                        R.layout.car_simple_list_item_frag, parent, false);
+                        R.layout.car_item_frag, parent, false);
             }
 
             final View  listItemView = listItemView1;
@@ -63,25 +63,9 @@ public class CarAdapter extends ArrayAdapter<Car> {
             isFreeSwitch.setChecked(currentCar.isFree() ? true : false);
             isFreeSwitch.setEnabled(false);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             // Return the whole list item layout (containing 5 TextViews)
             // so that it can be shown in the ListView
-            return listItemView;    }
+            return listItemView;
+        }
 
 }

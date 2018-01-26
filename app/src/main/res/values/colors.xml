@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="background_dark">#102241</color>
+    <color name="background_light">#96b5c9</color>
+    <color name="transparent">#03252b2d</color>
+    <color name="commandDetailBakcground">#32aff4ec</color>
+    <color name="button_selector">#ff404d</color>
+    <color name="text_button_selector">#fcf5f5</color>
+
+
+
+
 </resources>

@@ -121,11 +121,11 @@ public class Academy_Const {
 
         carModel.setAirC(contentValues.getAsBoolean(CarModelConst.AIR_C));
         carModel.setAutomatic( contentValues.getAsBoolean(CarModelConst.IS_AUTOMATIC));
-        carModel.setLuggageCompartment((LUGGAGE.valueOf(contentValues.getAsString(CarModelConst.LUGAGE_COMPARTMENT))));
+        carModel.setLuggageCompartment((LUGGAGE.valueOf(contentValues.getAsString(CarModelConst.LUGAGE_COMPARTMENT).toUpperCase())));
         carModel.setModelCompanyName(contentValues.getAsString(CarModelConst.COMPANY_NAME));
         carModel.setModelName(contentValues.getAsString(CarModelConst.MODEL_NAME));
-        carModel.setPassengers((PASSENGERS.valueOf(contentValues.getAsString(CarModelConst.PASSENGERS))));
-        carModel.setClasse(CLASSE.valueOf(contentValues.getAsString(CarModelConst.CLASSE)));
+        carModel.setPassengers((PASSENGERS.valueOf(contentValues.getAsString(CarModelConst.PASSENGERS).toUpperCase())));
+        carModel.setClasse(CLASSE.valueOf(contentValues.getAsString(CarModelConst.CLASSE).toUpperCase()));
         carModel.setPriceDay();
         carModel.setDoor();
         carModel.setModelMotorVolume();

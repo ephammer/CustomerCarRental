@@ -8,6 +8,7 @@ import com.ephraimhammer.jct.customercarrental.model.backend.DB_Manager;
 import com.ephraimhammer.jct.customercarrental.model.entities.BRAND;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
+import com.ephraimhammer.jct.customercarrental.model.entities.CarModel;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
 import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 
@@ -153,6 +154,10 @@ public class List_DBManager implements DB_Manager {
         return null;
     }
 
+    @Override
+    public CarModel getCarModelById(long id) {
+        return null;
+    }
 
 
     @Override

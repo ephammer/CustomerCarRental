@@ -14,6 +14,7 @@ import com.ephraimhammer.jct.customercarrental.control.adapter.CarAdapter;
 import com.ephraimhammer.jct.customercarrental.model.datasource.MySql_DBManager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
+import com.ephraimhammer.jct.customercarrental.model.entities.CarModel;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
 
 import java.util.ArrayList;
@@ -225,6 +226,8 @@ public class Task
 
     }
 
+
+
     public static class IsMatchPasswordTask extends AsyncTask< String, Void, Boolean>
     {
 
@@ -234,6 +237,10 @@ public class Task
 
         }
     }
+
+
+
+
 
 
 

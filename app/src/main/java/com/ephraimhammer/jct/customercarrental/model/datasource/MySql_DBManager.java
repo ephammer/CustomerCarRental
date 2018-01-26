@@ -7,6 +7,7 @@ import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
 import com.ephraimhammer.jct.customercarrental.model.backend.DB_Manager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
+import com.ephraimhammer.jct.customercarrental.model.entities.CarModel;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
 import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 
@@ -323,6 +324,36 @@ public class MySql_DBManager implements DB_Manager {
         return result;
 
 
+    }
+
+    @Override
+    public CarModel getCarModelById(long id) {
+
+        CarModel carModel = new CarModel();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Academy_Const.CarModelConst.ID , id);
+        try
+        {
+            String str = PHPtools.POST(WEB_URL +  SLASH +"getCarModelById.php"  , contentValues);
+            JSONArray array = new  JSONObject(str).getJSONArray("carModel");
+
+            JSONObject jsonObject;
+            ContentValues contentValues1;
+
+
+            jsonObject = array.getJSONObject(0);
+            contentValues1 = PHPtools.JsonToContentValues(jsonObject);
+            carModel = Academy_Const.ContentValuesToCarModel(contentValues1);
+
+            return carModel;
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return carModel;
     }
 
     @Override
