@@ -1,6 +1,7 @@
 package com.ephraimhammer.jct.customercarrental.model.datasource;
 
 import android.content.ContentValues;
+import android.content.Context;
 
 
 import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
@@ -103,7 +104,7 @@ public class List_DBManager implements DB_Manager {
 
 
     @Override
-    public boolean isMatchedPassword(String password, String id)
+    public boolean isMatchedPassword(Context context, String password, String id)
     {
         for (Client c : clientList) {
             if(c.getMailAdress() == id && c.getPassword() == password)

@@ -1,8 +1,11 @@
 package com.ephraimhammer.jct.customercarrental.model.datasource;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
 import com.ephraimhammer.jct.customercarrental.model.backend.DB_Manager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
@@ -46,7 +49,9 @@ public class MySql_DBManager implements DB_Manager {
     }
 
     @Override
-    public boolean isMatchedPassword(String password, String id) {
+    public boolean isMatchedPassword(Context context, String password, String id) {
+        SharedPreferences sharedPref = context.getSharedPreferences(
+               context.getString(R.string.preference_login), Context.MODE_PRIVATE);
 
         ContentValues contentValues1 = new ContentValues();
         contentValues1.put("mailAddress", id);
@@ -69,6 +74,8 @@ public class MySql_DBManager implements DB_Manager {
                 client = Academy_Const.ContentValuesToClient(contentValues);
 
                 result.add(client);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean(context.getString(R.string.signedIn), true).apply();
 
             }
             return !(result.isEmpty());

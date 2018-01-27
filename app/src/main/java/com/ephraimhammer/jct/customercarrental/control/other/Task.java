@@ -215,9 +215,14 @@ public class Task {
 
     public static class IsMatchPasswordTask extends AsyncTask<String, Void, Boolean> {
 
+        Context context;
+        IsMatchPasswordTask(Context context)
+        {
+            this.context = context;
+        }
         @Override
         protected Boolean doInBackground(String... strings) {
-            return Manager.isMatchedPassword(strings[0], strings[1]);
+            return Manager.isMatchedPassword(context, strings[0], strings[1]);
 
         }
     }

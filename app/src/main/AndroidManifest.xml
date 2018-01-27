@@ -15,11 +15,6 @@
             android:name=".control.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service
@@ -32,9 +27,17 @@
         <receiver
             android:name=".control.other.FreeCarReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
-        <activity android:name=".control.activity.LogInActivity"></activity>
+        <activity android:name=".control.activity.LogInActivity" />
+        <activity android:name=".control.activity.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".control.activity.RegisterActivity"></activity>
     </application>
 
 </manifest>

@@ -132,12 +132,10 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 0;
     }
 
@@ -145,7 +143,7 @@ public class LogInActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(String... strings) {
-            return sql_dbManager.isMatchedPassword(strings[0], strings[1]);
+            return sql_dbManager.isMatchedPassword(getApplicationContext(), strings[0], strings[1]);
         }
 
         @Override

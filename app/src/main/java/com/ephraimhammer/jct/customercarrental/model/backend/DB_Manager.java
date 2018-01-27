@@ -1,6 +1,7 @@
 package com.ephraimhammer.jct.customercarrental.model.backend;
 
 import android.content.ContentValues;
+import android.content.Context;
 
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
@@ -17,7 +18,7 @@ import java.util.List;
 public interface DB_Manager {
 
     boolean isClientExist(long id);
-    boolean isMatchedPassword(String password, String id);
+    boolean isMatchedPassword(Context context, String password, String id);
     long addClient(ContentValues client);
 
 
