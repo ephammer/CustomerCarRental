@@ -27,6 +27,7 @@ import com.ephraimhammer.jct.customercarrental.control.fragment.CarFreeListFragm
 import com.ephraimhammer.jct.customercarrental.control.fragment.branchListFragment;
 import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
+import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 
 import java.util.Objects;
 
@@ -328,10 +329,14 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
                 displayRedirect();
                 break;
             case CAR_SIMPLE_LIST_TO_CAR_DETAIL_ACTIVITY:
-                carId = (long)data[0];
-                Intent addCommandIntent = new Intent();
+                Car car = (Car)data[0];
+                Intent addCommandIntent = new Intent(this , AddCommandActivity.class);
                 addCommandIntent.putExtra(Academy_Const.BranchConst.ID , branch.getBranchId());
-                addCommandIntent.putExtra(Academy_Const.CarConst.ID , carId);
+                addCommandIntent.putExtra(Academy_Const.CarConst.KILOMETRE ,car.getKilometre() );
+                addCommandIntent.putExtra("carId" , car.getCarId());
+                addCommandIntent.putExtra("carModelId" , car.getTypeModelID());
+                startActivity(addCommandIntent);
+
                 break;
 
 

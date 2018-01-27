@@ -11,7 +11,7 @@ public class CarModel {
     boolean automatic;
     PASSENGERS passengers;
     DOOR door;
-    LUGGAGE luggageCompartment;
+    static LUGGAGE luggageCompartment;
     CLASSE classe;
     int priceDay;
     boolean airC ;
@@ -162,7 +162,7 @@ public class CarModel {
         }
     }
 
-    public LUGGAGE getLuggageCompartment() {
+    public static LUGGAGE getLuggageCompartment() {
         return luggageCompartment;
     }
 

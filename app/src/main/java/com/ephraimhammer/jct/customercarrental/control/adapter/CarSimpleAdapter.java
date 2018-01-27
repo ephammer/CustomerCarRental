@@ -93,7 +93,7 @@ public class CarSimpleAdapter extends ArrayAdapter<Car> {
             public void onClick(View v) {
                 isAbleToCommunicateFragment =(IsAbleToCommunicateFragment)getContext();
                 isAbleToCommunicateFragment.sendData(COMUNICATE_BTWN_FRAG.CAR_SIMPLE_LIST_TO_CAR_DETAIL_ACTIVITY
-                , car.getCarId() );
+                , car);
             }
         });
 
