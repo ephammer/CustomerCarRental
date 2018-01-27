@@ -2,14 +2,9 @@ package com.ephraimhammer.jct.customercarrental.control;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.ephraimhammer.jct.customercarrental.control.other.Task;
-import com.ephraimhammer.jct.customercarrental.model.entities.Car;
-
-import java.util.List;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in

@@ -21,18 +21,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".control.other.BranchsModels"
-            android:label="@string/title_activity_branchs_models"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".control.CarListActivity" />
 
         <service
             android:name=".control.reservedCarUpdateService"
-            android:exported="false"></service>
+            android:exported="false" />
+
         <activity android:name=".control.activity.CarListActivity" />
-        <activity android:name=".control.activity.branchSimpleListActivity" />
-        <activity android:name=".control.activity.AddCommandActivity"></activity>
+        <activity android:name=".control.activity.AddCommandActivity" />
+
+        <receiver
+            android:name=".control.other.FreeCarReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <activity android:name=".control.activity.LogInActivity"></activity>
     </application>
 
 </manifest>

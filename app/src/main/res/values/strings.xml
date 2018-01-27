@@ -137,4 +137,18 @@
     <string name="car_color">Color</string>
     <string name="title_activity_car_model_list">Car Model List</string>
     <string name="car_door">Door</string>
+    <string name="webpage">Webpage</string>
+    <string name="email_us">Email us</string>
+    <string name="phone_us">Call us</string>
+    <string name="sign_in">Sign in</string>
+    <string name="welcome">Welcome!</string>
+    <string name="preference_login">PreferenceLogin</string>
+    <string name="signedIn">SignedIn</string>
+    <string name="register">Register</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Sign In</string>
+    <string name="error_invalid_password">Error Invalid Password</string>
+    <string name="error_field_required">Error Field Required</string>
+    <string name="error_invalid_email">Error Invalid Email</string>
 </resources>
