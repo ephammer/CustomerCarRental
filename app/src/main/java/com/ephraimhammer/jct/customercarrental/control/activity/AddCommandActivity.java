@@ -1,6 +1,8 @@
 package com.ephraimhammer.jct.customercarrental.control.activity;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +32,7 @@ public class AddCommandActivity extends AppCompatActivity {
     String startCommandDate;
     MySql_DBManager Manager;
     Button addCommandButton;
+    AlertDialog alertDialog;
 
 
 
@@ -50,12 +53,17 @@ public class AddCommandActivity extends AppCompatActivity {
 
         addCommandButton = (Button)findViewById(R.id.addCommandbutton);
 
+        alertDialog = new AlertDialog.Builder(this).create();
+
+
+
+
+
 
         addCommandButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                addCommand();
+                alertDialog.show();
             }
         });
 
@@ -117,6 +125,18 @@ public class AddCommandActivity extends AppCompatActivity {
             }
 
             mPassengersTxtView.setText(carModel.getPassengers().toString().toLowerCase());
+
+
+
+            alertDialog.setMessage("Push Ok to rent " + carModel.getModelCompanyName() + "  " + carModel.getModelName() );
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            addCommand();
+                            dialog.dismiss();
+                        }
+                    });
+
 
         }
 
