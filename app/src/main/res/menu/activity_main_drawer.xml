@@ -14,8 +14,14 @@
         <item
             android:id="@+id/nav_list_branch"
             android:icon="@drawable/mini_car_icon"
-            android:title="Display Branches"
+            android:title="Our Branches"
             />
+        <item android:id="@+id/nav_display_free_car"
+            android:icon="@drawable/ninja"
+            android:title="Our Cars"
+            >
+
+        </item>
 
         <item
             android:id="@+id/nav_login"

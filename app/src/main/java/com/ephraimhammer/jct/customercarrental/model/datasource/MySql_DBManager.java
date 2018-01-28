@@ -438,6 +438,35 @@ public class MySql_DBManager implements DB_Manager {
     }
 
     @Override
+    public Branch getBranchById(long id) {
+        Branch branch = new Branch();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Academy_Const.CarModelConst.ID , id);
+        try
+        {
+            String str = PHPtools.POST(WEB_URL +  SLASH +"getBranchById.php"  , contentValues);
+            JSONArray array = new  JSONObject(str).getJSONArray("branch");
+
+            JSONObject jsonObject;
+            ContentValues contentValues1;
+
+
+            jsonObject = array.getJSONObject(0);
+            contentValues1 = PHPtools.JsonToContentValues(jsonObject);
+            branch = Academy_Const.ContentValuesToBranch(contentValues1);
+
+            return branch;
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return branch;
+    }
+
+    @Override
     public List isCommandClosedWithinTen() {
         List<Car> result = new ArrayList<>();
 

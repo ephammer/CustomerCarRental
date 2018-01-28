@@ -2,10 +2,9 @@
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:id="@+id/rootViewCarFreeFragment"
-    android:background="@drawable/shadow_r_l"
     android:orientation="vertical"
-    android:layout_margin="16dp"
 
+  android:background="@drawable/shadow_b"
     >
 
 

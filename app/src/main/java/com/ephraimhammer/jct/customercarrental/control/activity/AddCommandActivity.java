@@ -2,8 +2,10 @@ package com.ephraimhammer.jct.customercarrental.control.activity;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +35,8 @@ public class AddCommandActivity extends AppCompatActivity {
     MySql_DBManager Manager;
     Button addCommandButton;
     AlertDialog alertDialog;
+    SharedPreferences preferences ;
+
 
 
 
@@ -55,6 +59,9 @@ public class AddCommandActivity extends AppCompatActivity {
 
         alertDialog = new AlertDialog.Builder(this).create();
 
+        preferences =getApplicationContext().getSharedPreferences(
+                getString(R.string.preference_login), Context.MODE_PRIVATE);
+
 
 
 
@@ -68,7 +75,7 @@ public class AddCommandActivity extends AppCompatActivity {
         });
 
         //TODO:SHARED PREFERENCE.
-        clientId =37;
+        clientId = preferences.getInt(getApplicationContext().getString(R.string.client_id), 37);;
 
         new CarModelByIdTask().execute(carModelId);
 

@@ -14,7 +14,7 @@ import com.ephraimhammer.jct.customercarrental.control.other.Task;
  * Created by binyamin on 22/01/2018.
  */
 
-public class branchListFragment extends ListFragment {
+public class BranchListFragment extends ListFragment {
 
 
     @Override
@@ -28,10 +28,7 @@ public class branchListFragment extends ListFragment {
         return view;
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
 
 
-        super.onListItemClick(l, v, position, id);
-    }
+
 }

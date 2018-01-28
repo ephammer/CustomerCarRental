@@ -182,6 +182,11 @@ public class List_DBManager implements DB_Manager {
     }
 
     @Override
+    public Branch getBranchById(long id) {
+        return null;
+    }
+
+    @Override
     public boolean updateCarOnCloseCommand(ContentValues updateCar) {
         return false;
     }

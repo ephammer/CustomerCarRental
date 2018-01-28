@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
@@ -14,10 +15,14 @@ import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.control.adapter.BranchSimpleAdapter;
 import com.ephraimhammer.jct.customercarrental.control.adapter.CarAdapter;
 import com.ephraimhammer.jct.customercarrental.control.adapter.CommandAdapter;
+import com.ephraimhammer.jct.customercarrental.control.adapter.CarSimpleAdapter;
+import com.ephraimhammer.jct.customercarrental.control.adapter.CarSimpleAdapter;
+import com.ephraimhammer.jct.customercarrental.control.adapter.CommandAdapter;
 import com.ephraimhammer.jct.customercarrental.model.datasource.MySql_DBManager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
+import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 
 import java.util.ArrayList;
@@ -153,8 +158,8 @@ public class Task {
         @Override
         protected void onPostExecute(List<Car> cars) {
             ArrayList<Car> carModelArrayList = new ArrayList<Car>(cars);
-            CarAdapter itemAdapter =
-                    new CarAdapter(activity, carModelArrayList);
+            CarSimpleAdapter itemAdapter =
+                    new CarSimpleAdapter(activity, carModelArrayList);
             ListView listView = (ListView) activity.findViewById(R.id.rootView);
             listView.setAdapter(itemAdapter);
         }
@@ -162,10 +167,13 @@ public class Task {
 
 
     public static class FreeCarListTask extends AsyncTask<Void, Void, List<Car>> {
-        private Context context;
 
-        public FreeCarListTask(Context context) {
+        private Context context;
+        private Boolean isUsedFormainFrag;
+        public FreeCarListTask(Context context , Boolean bool) {
+
             this.context = context;
+            this.isUsedFormainFrag = bool;
         }
 
         @Override
@@ -176,12 +184,14 @@ public class Task {
         @Override
         protected void onPostExecute(List<Car> cars) {
             ArrayList<Car> carModelArrayList = new ArrayList<Car>(cars);
-            CarAdapter itemAdapter =
-                    new CarAdapter((Activity) context, carModelArrayList);
-            ListView listView = (ListView) ((Activity) context).findViewById(R.id.rootView);
+            CarSimpleAdapter itemAdapter =
+                    new CarSimpleAdapter((Activity) context, carModelArrayList);
+            itemAdapter.setIsusedForMainFrag(isUsedFormainFrag);
+            ListView listView = (ListView) ((Activity) context).findViewById(R.id.rootViewCarFreeFragment);
             listView.setAdapter(itemAdapter);
         }
     }
+
 
     public static class BranchSimpleListTask extends AsyncTask<Void, Void, List<Branch>> {
         Activity activity;
@@ -283,5 +293,7 @@ public class Task {
             listView.setAdapter(commandAdapter);
         }
     }
+
+
 }
 

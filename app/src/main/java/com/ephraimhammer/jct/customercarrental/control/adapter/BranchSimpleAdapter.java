@@ -7,15 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.control.other.COMUNICATE_BTWN_FRAG;
 import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicateFragment;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
-import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 
 import java.util.ArrayList;
 
@@ -62,7 +59,7 @@ public class BranchSimpleAdapter extends ArrayAdapter<Branch> {
             @Override
             public void onClick(View v) {
                 isAbleToCommunicateFragment = (IsAbleToCommunicateFragment)getContext();
-                isAbleToCommunicateFragment.sendData(COMUNICATE_BTWN_FRAG.BRANCH_LIST_TO_BRANCH_DETAIL, currentBranch);
+                isAbleToCommunicateFragment.sendData(COMUNICATE_BTWN_FRAG.MAIN_BRANCH_LIST_TO_DETAIL_BRANCH_AND_REDIRECT_CAR, currentBranch);
             }
         });
 

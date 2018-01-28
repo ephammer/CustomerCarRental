@@ -41,4 +41,6 @@ public interface DB_Manager {
     public boolean updateCarOnOpenCommand(ContentValues updateCar);
 
     public List<Command> getCommandByClient(long idClient);
+
+    Branch getBranchById(long id);
 }

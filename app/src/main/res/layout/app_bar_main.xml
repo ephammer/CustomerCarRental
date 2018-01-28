@@ -31,11 +31,10 @@
         <FrameLayout
             android:id="@+id/frame"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:layout_weight="1"
-            android:layout_margin="4dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:background="@drawable/shadow_b"
 
             >
         </FrameLayout>

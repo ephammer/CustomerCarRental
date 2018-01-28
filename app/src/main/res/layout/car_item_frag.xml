@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ROOTLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
 
     >
 
@@ -16,16 +17,13 @@
         android:animateLayoutChanges="true"
         android:visibility="visible"
         android:background="@drawable/shadow_r_l"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"
+
         >
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8">
+            android:layout_weight="0.88">
 
             <ImageView
                 android:id="@+id/carIconImageView"
@@ -45,7 +43,7 @@
 
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.7"
+                android:layout_weight="1"
                 android:orientation="vertical"
                 android:paddingLeft="4dp"
                 android:paddingTop="6dp">
@@ -66,6 +64,13 @@
                     android:layout_marginTop="4dp"
                     android:text="NbR Km" />
 
+                <TextView
+                    android:id="@+id/priceTxtView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Price $ / day"
+                    ></TextView>
                 <Switch
                     android:id="@+id/isFreeSwitch"
                     android:layout_width="match_parent"
@@ -75,11 +80,7 @@
                     android:text="free   "
                     tools:checked="false" />
 
-                <TextView
-                    android:layout_width="92dp"
-                    android:layout_height="wrap_content"
-                    android:text="Price $ / day"
-                    ></TextView>
+
 
 
                 <LinearLayout
@@ -98,7 +99,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1"
+            android:paddingTop="2dp"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="0.9"
             >
             <LinearLayout
                 android:layout_width="match_parent"

@@ -10,6 +10,6 @@ public class FreeCarReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // an Intent broadcast.
         Log.d("FreeCarReceiver", "BroadCast received");
-        new Task.FreeCarListTask(context).execute();
+        new Task.FreeCarListTask(context, true).execute();
     }
 }
