@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/command_id" />
+
+            <TextView
+                android:id="@+id/text_view_command_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2343" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_view_command_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            tools:text="OPEN" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Car ID: " />
+
+        <TextView
+            android:id="@+id/textView_command_car_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="23" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From: " />
+
+        <TextView
+            android:id="@+id/text_view_command_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="24/12/18" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To: " />
+
+        <TextView
+            android:id="@+id/text_view_command_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="24/12/18" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Km beginning: " />
+
+        <TextView
+            android:id="@+id/text_view_command_start_km"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="23" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Km" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" to: " />
+
+        <TextView
+            android:id="@+id/text_view_command_end_km"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Km" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fuel State: " />
+
+        <TextView
+            android:id="@+id/textView_command_fuel_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Filled" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount of Liters filled: " />
+
+        <TextView
+            android:id="@+id/textView_command_amount_filled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="23" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" L " />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price: " />
+
+        <TextView
+            android:id="@+id/textView_command_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="23" />
+    </LinearLayout>
+</LinearLayout>

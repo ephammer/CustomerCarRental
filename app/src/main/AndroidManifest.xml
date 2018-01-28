@@ -14,14 +14,14 @@
         <activity
             android:name=".control.activity.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <service
             android:name=".control.reservedCarUpdateService"
             android:exported="false" />
 
-        <activity android:name=".control.activity.CarListActivity" />
+        <activity android:name=".control.activity.CarListActivity"
+            android:parentActivityName=".control.activity.MainActivity"/>
         <activity android:name=".control.activity.AddCommandActivity" />
 
         <receiver
@@ -37,7 +37,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".control.activity.RegisterActivity"></activity>
+        <activity android:name=".control.activity.RegisterActivity" />
+        <activity android:name=".control.activity.CommandListActivity"
+            android:parentActivityName=".control.activity.MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

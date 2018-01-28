@@ -50,14 +50,8 @@ public class CarListActivity extends AppCompatActivity {
 
         IntentFilter filter = new IntentFilter("com.example.binyamin.android5778_0445_7734_01.BroadcastReceiver");
 
-        FreeCarReceiver myReceiver = new FreeCarReceiver();
-        registerReceiver(myReceiver, filter);
+        registerReceiver(new FreeCarReceiver(), filter);
 
-
-    }
-
-    public void refreshCarsList() {
-        new Task.FreeCarListTask(this).execute();
 
     }
 

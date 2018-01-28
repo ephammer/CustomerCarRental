@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
@@ -12,10 +13,12 @@ import android.widget.Toast;
 import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.control.adapter.BranchSimpleAdapter;
 import com.ephraimhammer.jct.customercarrental.control.adapter.CarAdapter;
+import com.ephraimhammer.jct.customercarrental.control.adapter.CommandAdapter;
 import com.ephraimhammer.jct.customercarrental.model.datasource.MySql_DBManager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
+import com.ephraimhammer.jct.customercarrental.model.entities.Command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -216,10 +219,11 @@ public class Task {
     public static class IsMatchPasswordTask extends AsyncTask<String, Void, Boolean> {
 
         Context context;
-        IsMatchPasswordTask(Context context)
-        {
+
+        IsMatchPasswordTask(Context context) {
             this.context = context;
         }
+
         @Override
         protected Boolean doInBackground(String... strings) {
             return Manager.isMatchedPassword(context, strings[0], strings[1]);
@@ -252,6 +256,31 @@ public class Task {
             }
             Log.d("ReservedCarUpdateTask", "No new reservation");
 
+        }
+    }
+
+    public static class CommandListTask extends AsyncTask<Void, Void, List<Command>> {
+        Context context;
+        SharedPreferences sharedPref;
+
+        public CommandListTask(Context context) {
+            this.context = context;
+            sharedPref = context.getSharedPreferences(
+                    context.getString(R.string.preference_login), Context.MODE_PRIVATE);
+        }
+
+        @Override
+        protected List<Command> doInBackground(Void... voids) {
+            int id = sharedPref.getInt(context.getString(R.string.client_id), 37);
+            return Manager.getCommandByClient(id);
+        }
+
+        @Override
+        protected void onPostExecute(List<Command> commands) {
+            ArrayList<Command> commandArrayList = new ArrayList<>(commands);
+            CommandAdapter commandAdapter = new CommandAdapter((Activity) context, commandArrayList);
+            ListView listView = ((Activity) context).findViewById(R.id.list_view_command);
+            listView.setAdapter(commandAdapter);
         }
     }
 }

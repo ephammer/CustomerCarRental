@@ -63,7 +63,7 @@ public class PHPtools {
 
     public static String POST (String url , ContentValues params) throws IOException {
 
-        // string builder is more effiecient than string for the append method.
+        // string builder is more efficient than string for the append method.
         StringBuilder postData = new StringBuilder();
 
         // from map <String , Object> to &key=value ;

@@ -13,6 +13,7 @@ import com.ephraimhammer.jct.customercarrental.model.entities.FUEL_STATE;
 import com.ephraimhammer.jct.customercarrental.model.entities.LUGGAGE;
 import com.ephraimhammer.jct.customercarrental.model.entities.PASSENGERS;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 
@@ -228,19 +229,21 @@ public class Academy_Const {
         command.setAmountOfLiterFilled(contentValues.getAsInteger(CommandConst.AMOUNTOfLITERFILLED));
         command.setCarId(contentValues.getAsLong(CommandConst.CAR_ID));
         command.setClientId(contentValues.getAsLong(CommandConst.CLIENT_ID));
-        command.setCommandState((COMMAND_STATE) contentValues.get(CommandConst.STATE));
+        command.setCommandState((COMMAND_STATE.valueOf(contentValues.getAsString(CommandConst.STATE))));
         command.setEndNumberKilometre(contentValues.getAsInteger(CommandConst.END_NUMBER_KILOMETRE));
-        command.setEndRentingDate((Date) contentValues.get(CommandConst.END_RENTING_DATE));
-        command.setFuel_state((FUEL_STATE) contentValues.get(CommandConst.FUEL_STATE));
+        command.setEndRentingDate(contentValues.getAsString(CommandConst.END_RENTING_DATE));
+        command.setFuel_state((FUEL_STATE.valueOf(contentValues.getAsString(CommandConst.FUEL_STATE))));
         command.setPrice(contentValues.getAsFloat(CommandConst.BILL));
         command.setStartNumberKilometre(contentValues.getAsInteger(CommandConst.START_NUMBER_KILOMETRE));
-        command.setStartRentingDate((Date) contentValues.get(CommandConst.START_RENTING_DATE));
+        command.setStartRentingDate(contentValues.getAsString(CommandConst.START_RENTING_DATE));
 
 
         return command;
 
 
     }
+
+
 
     public static Client ContentValuesToClient(ContentValues contentValues)
     {

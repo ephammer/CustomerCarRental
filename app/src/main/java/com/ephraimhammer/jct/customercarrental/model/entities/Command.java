@@ -1,5 +1,8 @@
 package com.ephraimhammer.jct.customercarrental.model.entities;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Command {
@@ -9,7 +12,7 @@ public class Command {
     long carId;
     Date startRentingDate;
     Date endRentingDate;
-    int  startNumberKilometre;
+    int startNumberKilometre;
     int endNumberKilometre;
     FUEL_STATE fuel_state;
     int amountOfLiterFilled;
@@ -55,6 +58,15 @@ public class Command {
     public void setStartRentingDate(Date startRentingDate) {
         this.startRentingDate = startRentingDate;
     }
+    public void setStartRentingDate(String startRentingDate) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date date = format.parse(startRentingDate);
+            this.startRentingDate = date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Date getEndRentingDate() {
         return endRentingDate;
@@ -62,6 +74,18 @@ public class Command {
 
     public void setEndRentingDate(Date endRentingDate) {
         this.endRentingDate = endRentingDate;
+    }
+
+    public void setEndRentingDate(String endRentingDate)
+    {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date date = format.parse(endRentingDate);
+            this.endRentingDate = date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int getStartNumberKilometre() {

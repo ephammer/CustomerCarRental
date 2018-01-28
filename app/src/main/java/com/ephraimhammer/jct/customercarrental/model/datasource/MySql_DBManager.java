@@ -75,7 +75,7 @@ public class MySql_DBManager implements DB_Manager {
 
                 result.add(client);
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putBoolean(context.getString(R.string.signedIn), true).apply();
+                editor.putLong(context.getString(R.string.client_id), client.getClientId()).apply();
 
             }
             return !(result.isEmpty());
@@ -403,8 +403,10 @@ public class MySql_DBManager implements DB_Manager {
     @Override
     public List<Command> getCommandByClient(long idClient) {
 
+        Command command;
         ContentValues contentValues = new ContentValues();
         contentValues.put(Academy_Const.CommandConst.CLIENT_ID, idClient);
+
 
         List<Command> result = new ArrayList<>();
         try
@@ -414,13 +416,12 @@ public class MySql_DBManager implements DB_Manager {
 
             JSONObject jsonObject;
             ContentValues contentValues1;
-            Command command;
 
             for (int i = 0 ; i < array.length(); i++)
             {
                 jsonObject = array.getJSONObject(i);
                 contentValues1 = PHPtools.JsonToContentValues(jsonObject);
-                command = Academy_Const.ContentValuesToCommand(contentValues);
+                command = Academy_Const.ContentValuesToCommand(contentValues1);
 
                 result.add(command);
 
