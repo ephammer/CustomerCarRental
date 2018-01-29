@@ -1,26 +1,21 @@
 package com.ephraimhammer.jct.customercarrental.control.fragment;
 
-import android.app.Activity;
 import android.app.ListFragment;
 import android.content.IntentFilter;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.ephraimhammer.jct.customercarrental.R;
-import com.ephraimhammer.jct.customercarrental.control.adapter.CarAdapter;
 import com.ephraimhammer.jct.customercarrental.control.adapter.CarSimpleAdapter;
 import com.ephraimhammer.jct.customercarrental.control.other.FreeCarReceiver;
-import com.ephraimhammer.jct.customercarrental.control.other.FreeCarReceiver;
-import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicateFragment;
 import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
 import com.ephraimhammer.jct.customercarrental.control.other.Task;
-import com.ephraimhammer.jct.customercarrental.control.reservedCarUpdateService;
 import com.ephraimhammer.jct.customercarrental.model.datasource.MySql_DBManager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 
@@ -36,7 +31,7 @@ public class CarFreeListFragment extends ListFragment {
 
     long branchId;
     int rangeKm = 0;
-    int sector = 0 ;
+    int sector = 0;
     boolean isUsedForMainFrag;
     MySql_DBManager Manager;
 
@@ -64,9 +59,7 @@ public class CarFreeListFragment extends ListFragment {
     }
 
 
-
-    class FreeCarByBranchTask extends AsyncTask<Long,Void,List<Car>>
-    {
+    class FreeCarByBranchTask extends AsyncTask<Long, Void, List<Car>> {
 
         @Override
         protected List<Car> doInBackground(Long... longs) {
@@ -76,19 +69,20 @@ public class CarFreeListFragment extends ListFragment {
         @Override
         protected void onPostExecute(List<Car> cars) {
             if (isAdded()) {
-                ArrayList<Car> carModelArrayList = new ArrayList<Car>(cars);
+                ArrayList<Car> carModelArrayList = new ArrayList<>(cars);
                 CarSimpleAdapter itemAdapter =
                         new CarSimpleAdapter(getActivity(), carModelArrayList);
-                ListView listView = (ListView) getActivity().findViewById(R.id.rootViewCarFreeFragment);
+                ListView listView = getActivity().findViewById(R.id.rootViewCarFreeFragment);
                 listView.setAdapter(itemAdapter);
             }
         }
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.free_cars_list_fragment, container , false);
+        View view = inflater.inflate(R.layout.free_cars_list_fragment, container, false);
         Manager = MySql_DBManager.getInstance();
 
         // BroadcastReceiver
@@ -96,11 +90,10 @@ public class CarFreeListFragment extends ListFragment {
         getActivity().registerReceiver(new FreeCarReceiver(), filter);
 
 
-
         SEARCH_CAR_TYPE searchCarType = (search_car_type);
         switch (search_car_type) {
             case FREE_CARS:
-                new Task.FreeCarListTask(getActivity(), isUsedForMainFrag).execute();
+                new Task.FreeCarListTask(getContext(), isUsedForMainFrag, view).execute();
                 break;
             case FREE_CARS_BY_BRANCH:
                 new FreeCarByBranchTask().execute(branchId);
@@ -111,7 +104,6 @@ public class CarFreeListFragment extends ListFragment {
                 break;
 
         }
-
 
 
         return view;

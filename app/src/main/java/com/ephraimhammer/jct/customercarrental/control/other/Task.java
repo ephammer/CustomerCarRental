@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -170,10 +171,19 @@ public class Task {
 
         private Context context;
         private Boolean isUsedFormainFrag;
+        View rootView;
+        public FreeCarListTask(Context context , Boolean bool, View rootview) {
+
+            this.context = context;
+            this.isUsedFormainFrag = bool;
+            this.rootView = rootview;
+        }
+
         public FreeCarListTask(Context context , Boolean bool) {
 
             this.context = context;
             this.isUsedFormainFrag = bool;
+            this.rootView = ((Activity)context).findViewById(R.layout.free_cars_list_fragment);
         }
 
         @Override
@@ -183,11 +193,11 @@ public class Task {
 
         @Override
         protected void onPostExecute(List<Car> cars) {
-            ArrayList<Car> carModelArrayList = new ArrayList<Car>(cars);
+            ArrayList<Car> carModelArrayList = new ArrayList<>(cars);
             CarSimpleAdapter itemAdapter =
                     new CarSimpleAdapter((Activity) context, carModelArrayList);
             itemAdapter.setIsusedForMainFrag(isUsedFormainFrag);
-            ListView listView = (ListView) ((Activity) context).findViewById(R.id.rootViewCarFreeFragment);
+            ListView listView = rootView.findViewById(R.id.rootViewCarFreeFragment);
             listView.setAdapter(itemAdapter);
         }
     }
@@ -281,7 +291,7 @@ public class Task {
 
         @Override
         protected List<Command> doInBackground(Void... voids) {
-            int id = sharedPref.getInt(context.getString(R.string.client_id), 37);
+            long id = sharedPref.getLong(context.getString(R.string.client_id), 31);
             return Manager.getCommandByClient(id);
         }
 

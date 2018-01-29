@@ -74,8 +74,7 @@ public class AddCommandActivity extends AppCompatActivity {
             }
         });
 
-        //TODO:SHARED PREFERENCE.
-        clientId = preferences.getInt(getApplicationContext().getString(R.string.client_id), 37);;
+        clientId = preferences.getLong(getApplicationContext().getString(R.string.client_id), 31);;
 
         new CarModelByIdTask().execute(carModelId);
 

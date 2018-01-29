@@ -36,7 +36,7 @@ public class CarListActivity extends AppCompatActivity {
         SEARCH_CAR_TYPE searchCarType = (search_car_type);
         switch (search_car_type) {
             case FREE_CARS:
-                new Task.FreeCarListTask(this , false).execute();
+//                new Task.FreeCarListTask(this , false).execute();
                 break;
             case FREE_CARS_BY_BRANCH:
                 new Task.FreeCarByBranchTask(this).execute(branchId);
@@ -49,11 +49,6 @@ public class CarListActivity extends AppCompatActivity {
         }
 
 
-
-    }
-
-    public void refreshCarsList() {
-        new Task.FreeCarListTask(this , true).execute();
 
     }
 
