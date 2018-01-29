@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-
     >
 
 
@@ -34,6 +33,16 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 tool:text="NAMEBRANCHE" />
+            <TextView
+                android:id="@+id/mapTxtView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|bottom"
+                android:text="  maps  "
+                android:paddingRight="5dp"
+                android:textSize="12dp"
+                android:textColor="#3275b4"
+                />
 
 
         </LinearLayout>
@@ -119,6 +128,14 @@
 
 
     </LinearLayout>
+
+
+
+
+
+
+
+
 
 
 

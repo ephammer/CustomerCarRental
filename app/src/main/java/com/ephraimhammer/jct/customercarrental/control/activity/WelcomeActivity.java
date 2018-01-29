@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.ephraimhammer.jct.customercarrental.R;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity  {
 
     private SharedPreferences sharedPref;
 

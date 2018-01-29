@@ -13,15 +13,20 @@ import com.ephraimhammer.jct.customercarrental.model.entities.FUEL_STATE;
 import com.ephraimhammer.jct.customercarrental.model.entities.LUGGAGE;
 import com.ephraimhammer.jct.customercarrental.model.entities.PASSENGERS;
 
-import java.text.DateFormat;
-import java.util.Date;
-
 
 /**
  * Created by binyamin on 10/11/2017.
  */
 
 public class Academy_Const {
+
+    public static final String[] City = new String[]{"Jerusalem", "Tel Aviv" , "Rishon Letzion" , "Ashdod" ,
+    "Haifa" , "Beit Shemesh" , "Eilat" , "Bnei Brak" , "Raanana" , "Natanya" , "Ashkelon" , "Beit Shemen"
+    };
+
+    public static final String[] Streets = new String[] { "Kanfei Nesharim" , "King George" ,"HaPalmach" , "Herzl"
+            ,"Yitzhak Rabin", "Ben Gurion" , "Menachem Begin" , "Dizengof" , "Arlozorov"
+    };
 
 
     public static class CommunicateBetweenFragmentConst

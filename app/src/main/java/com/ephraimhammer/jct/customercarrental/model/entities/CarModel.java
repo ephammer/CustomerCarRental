@@ -48,6 +48,7 @@ public class CarModel {
             case VAN: priceDay = 80;
             break;
             case LUXE: priceDay = 120;
+            break;
             default:priceDay = 0 ;
         }
     }

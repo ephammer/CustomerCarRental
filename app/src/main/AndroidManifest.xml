@@ -11,19 +11,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".control.activity.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".control.reservedCarUpdateService"
             android:exported="false" />
 
-        <activity android:name=".control.activity.CarListActivity"
-            android:parentActivityName=".control.activity.MainActivity"/>
+        <activity
+            android:name=".control.activity.CarListActivity"
+            android:parentActivityName=".control.activity.MainActivity" />
         <activity android:name=".control.activity.AddCommandActivity" />
 
         <receiver
@@ -40,10 +40,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".control.activity.RegisterActivity" />
-        <activity android:name=".control.activity.CommandListActivity"
-            android:parentActivityName=".control.activity.MainActivity">
-
-        </activity>
+        <activity
+            android:name=".control.activity.CommandListActivity"
+            android:parentActivityName=".control.activity.MainActivity"></activity>
+        <activity android:name=".control.activity.MapActivity"></activity>
     </application>
 
 </manifest>
