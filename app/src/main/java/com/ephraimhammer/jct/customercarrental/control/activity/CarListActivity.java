@@ -48,9 +48,6 @@ public class CarListActivity extends AppCompatActivity {
 
         }
 
-        IntentFilter filter = new IntentFilter("com.example.binyamin.android5778_0445_7734_01.BroadcastReceiver");
-
-        registerReceiver(new FreeCarReceiver(), filter);
 
 
     }

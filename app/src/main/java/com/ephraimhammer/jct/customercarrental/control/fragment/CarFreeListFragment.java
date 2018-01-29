@@ -2,6 +2,7 @@ package com.ephraimhammer.jct.customercarrental.control.fragment;
 
 import android.app.Activity;
 import android.app.ListFragment;
+import android.content.IntentFilter;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.control.adapter.CarAdapter;
 import com.ephraimhammer.jct.customercarrental.control.adapter.CarSimpleAdapter;
+import com.ephraimhammer.jct.customercarrental.control.other.FreeCarReceiver;
 import com.ephraimhammer.jct.customercarrental.control.other.FreeCarReceiver;
 import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicateFragment;
 import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
@@ -61,6 +63,8 @@ public class CarFreeListFragment extends ListFragment {
         isUsedForMainFrag = usedForMainFrag;
     }
 
+
+
     class FreeCarByBranchTask extends AsyncTask<Long,Void,List<Car>>
     {
 
@@ -86,6 +90,10 @@ public class CarFreeListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.free_cars_list_fragment, container , false);
         Manager = MySql_DBManager.getInstance();
+
+        // BroadcastReceiver
+        IntentFilter filter = new IntentFilter("com.example.binyamin.android5778_0445_7734_01.BroadcastReceiver");
+        getActivity().registerReceiver(new FreeCarReceiver(), filter);
 
 
 
