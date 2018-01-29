@@ -157,6 +157,7 @@ public class AddCommandActivity extends AppCompatActivity {
         contentValues.put(Academy_Const.CommandConst.START_RENTING_DATE , startCommandDate);
 
         new Task.addCommandTask().execute(contentValues);
+        finish();
     }
 
 
