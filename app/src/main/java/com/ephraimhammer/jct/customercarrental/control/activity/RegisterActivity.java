@@ -1,6 +1,7 @@
 package com.ephraimhammer.jct.customercarrental.control.activity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -87,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                     contentValues.put(Academy_Const.ClientConst.PASSWORD, passwordEditText.getText().toString());
 
                     new Task.AddClientTask(getApplicationContext()).execute(contentValues);
+                    startActivity(new Intent(getApplicationContext(), LogInActivity.class));
                     finish();
                 }
             }
