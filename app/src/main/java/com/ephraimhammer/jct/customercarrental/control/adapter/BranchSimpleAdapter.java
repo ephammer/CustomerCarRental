@@ -1,6 +1,8 @@
 package com.ephraimhammer.jct.customercarrental.control.adapter;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -24,6 +26,8 @@ public class BranchSimpleAdapter extends ArrayAdapter<Branch> {
 
 
     IsAbleToCommunicateFragment isAbleToCommunicateFragment;
+    int currentSector;
+    SharedPreferences preferences;
 
     public BranchSimpleAdapter(Activity context, ArrayList<Branch> branchArrayList) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
@@ -43,6 +47,9 @@ public class BranchSimpleAdapter extends ArrayAdapter<Branch> {
                     R.layout.branch_list_simple_item, parent, false);
         }
 
+        preferences = getContext().getSharedPreferences(String.valueOf(R.string.preference_login), Context.MODE_PRIVATE);
+
+        currentSector = preferences.getInt(getContext().getString(R.string.client_sector) , 5);
         final View  listItemView = listItemView1;
 
         // Get the {@link currentCar} object located at this position in the list
@@ -66,7 +73,11 @@ public class BranchSimpleAdapter extends ArrayAdapter<Branch> {
 
 
         //TODO:Change it
-        distanceTextView.setText("47 Km");
+
+        int sectr = (int)(Math.random() * 21 );
+        int distanceSector = currentSector > sectr ? currentSector - sectr: sectr- currentSector;
+        double distanceKm = distanceSector*10;
+        distanceTextView.setText(String.valueOf(distanceKm));
         // so that it can be shown in the ListView
         return listItemView;    }
 }

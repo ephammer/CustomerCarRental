@@ -1,16 +1,20 @@
 package com.ephraimhammer.jct.customercarrental.control.fragment;
 
 import android.app.Fragment;
-import android.content.Intent;
+import android.app.FragmentTransaction;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.ephraimhammer.jct.customercarrental.R;
-import com.ephraimhammer.jct.customercarrental.control.activity.CarListActivity;
+import com.ephraimhammer.jct.customercarrental.control.other.COMUNICATE_BTWN_FRAG;
+import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicateFragment;
 import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
 
 /**
@@ -20,9 +24,21 @@ import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
 
 public class HomeFragment extends Fragment {
 
-    Button mButtonFreeCarsByBranch;
-    Button mButtonFreeCars;
+
+
+
     Button mButtonFreeCarsByRangeKm;
+    int rangeKm;
+    SearchView searchView;
+
+
+    TransitionDrawable transitionFreeCarRangeButton ;
+     static final int transition = 1000;
+
+     IsAbleToCommunicateFragment isAbleToCommunicateFragment;
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -44,61 +60,69 @@ public class HomeFragment extends Fragment {
            /*
         * Initialize UI Elements
         */
-        mButtonFreeCarsByBranch = getView().findViewById(R.id.button_free_cars_by_branch);
-        mButtonFreeCars = getView().findViewById(R.id.button_free_cars);
         mButtonFreeCarsByRangeKm = getView().findViewById(R.id.button_free_cars_by_rangeKm);
+        transitionFreeCarRangeButton = (TransitionDrawable) getView().findViewById(R.id.button_free_cars_by_rangeKm).getBackground();
+        isAbleToCommunicateFragment = (IsAbleToCommunicateFragment)(getActivity());
+        searchView = (SearchView)getView().findViewById(R.id.search_view_home);
+
+
+
 
         /*
         * Set OnClickListeners
         */
-        mButtonFreeCarsByBranch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                setmButtonFreeCarsByBranch();
-                //Intent mCarsPerBranchActivity = new Intent(getActivity(), CarListActivity.class);
-                //mCarsPerBranchActivity.putExtra("type", SEARCH_CAR_TYPE.FREE_CARS_BY_BRANCH );
-                //startActivity(mCarsPerBranchActivity);
-            }
-        });
-        mButtonFreeCars.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                setmButtonFreeCars();
-                //Intent mFreeCars = new Intent(getActivity(), CarListActivity.class);
-                //mFreeCars.putExtra("type" , SEARCH_CAR_TYPE.FREE_CARS);
-                //startActivity(mFreeCars);
-            }
-        });
         mButtonFreeCarsByRangeKm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                setmButtonFreeCarsByRangeKm();
-                // Intent mFreeCarsByRangeKm = new Intent(getActivity() , CarListActivity.class );
-                //mFreeCarsByRangeKm.putExtra("type", SEARCH_CAR_TYPE.FREE_CARS_BY_RANGE_KM);
-                //startActivity(mFreeCarsByRangeKm);
+                transitionFreeCarRangeButton.startTransition(transition);
             }
         });
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+                Toast.makeText(getActivity(), "Type a number",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+
+                    rangeKm = Integer.valueOf(query);
+                    loadFragmentList();
+                    return true;
+
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
     }
 
-    private void setmButtonFreeCarsByBranch() {
-        mButtonFreeCarsByBranch.setBackgroundResource(R.drawable.corner_left_top_right);
-        mButtonFreeCars.setBackgroundResource(R.drawable.corner_all);
-        mButtonFreeCarsByRangeKm.setBackgroundResource(R.drawable.corner_all);
+    private void loadFragmentList()
+    {
+
+        CarFreeListFragment carFreeListFragment =  new CarFreeListFragment() ;
+        carFreeListFragment.setRangeKm(rangeKm);
+        carFreeListFragment.setSearch_car_type(SEARCH_CAR_TYPE.FREE_CARS_BY_RANGE_KM);
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        //fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+        fragmentTransaction.replace(R.id.frame, carFreeListFragment);
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
-    private void setmButtonFreeCars(){
-        mButtonFreeCarsByBranch.setBackgroundResource(R.drawable.corner_all);
-        mButtonFreeCars.setBackgroundResource(R.drawable.corner_left_top_right);
-        mButtonFreeCarsByRangeKm.setBackgroundResource(R.drawable.corner_all);
 
-    }
-    private void setmButtonFreeCarsByRangeKm(){
-        mButtonFreeCarsByBranch.setBackgroundResource(R.drawable.corner_all);
-        mButtonFreeCars.setBackgroundResource(R.drawable.corner_all);
-        mButtonFreeCarsByRangeKm.setBackgroundResource(R.drawable.corner_left_top_right);
 
-    }
+
 }

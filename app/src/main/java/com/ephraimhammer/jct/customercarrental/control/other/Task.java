@@ -139,7 +139,7 @@ public class Task {
             ArrayList<Car> carModelArrayList = new ArrayList<Car>(cars);
             CarAdapter itemAdapter =
                     new CarAdapter(activity, carModelArrayList);
-            ListView listView = (ListView) activity.findViewById(R.id.rootView);
+            ListView listView = (ListView) activity.findViewById(R.id.rootViewCarFreeFragment);
             listView.setAdapter(itemAdapter);
         }
     }
@@ -161,7 +161,7 @@ public class Task {
             ArrayList<Car> carModelArrayList = new ArrayList<Car>(cars);
             CarSimpleAdapter itemAdapter =
                     new CarSimpleAdapter(activity, carModelArrayList);
-            ListView listView = (ListView) activity.findViewById(R.id.rootView);
+            ListView listView = (ListView) activity.findViewById(R.id.rootViewCarFreeFragment);
             listView.setAdapter(itemAdapter);
         }
     }

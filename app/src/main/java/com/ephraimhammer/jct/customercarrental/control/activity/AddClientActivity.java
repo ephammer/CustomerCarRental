@@ -12,7 +12,7 @@ import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.control.other.Task;
 import com.ephraimhammer.jct.customercarrental.model.backend.Academy_Const;
 
-import java.util.Random;
+
 
 public class AddClientActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -62,9 +62,8 @@ public class AddClientActivity extends AppCompatActivity implements View.OnClick
     private void addClient() {
         //TODO:Verifier les inputs.
 
-        Random rand = new Random();
 
-        sectr = rand.nextInt(50) + 1;
+
 
         contentValues = new ContentValues();
 
@@ -75,14 +74,13 @@ public class AddClientActivity extends AppCompatActivity implements View.OnClick
         contentValues.put(Academy_Const.ClientConst.PHONE_NUMBER, phoneEditText.getText().toString());
         contentValues.put(Academy_Const.ClientConst.MAIL_ADDRESS, mailEditText.getText().toString());
         contentValues.put(Academy_Const.ClientConst.CREDIT_CAR_NUMBER, creditCardEditText.getText().toString());
+
         contentValues.put(Academy_Const.ClientConst.PASSWORD, passwordEditText.getText().toString());
-        contentValues.put(Academy_Const.ClientConst.SECTOR, sectr);
+
 
         //TODO:ASYNCTASK
 
        new Task.AddClientTask(this).execute(contentValues);
-
-
 
     }
 

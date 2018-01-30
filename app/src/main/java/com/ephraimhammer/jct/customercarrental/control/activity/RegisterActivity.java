@@ -80,12 +80,14 @@ public class RegisterActivity extends AppCompatActivity {
                 if(flag){
                     contentValues = new ContentValues();
 
+                    int sectr = (int)(Math.random() * 21 );
                     contentValues.put(Academy_Const.ClientConst.FIRSTNAME,firstNameEditText.getText().toString());
                     contentValues.put(Academy_Const.ClientConst.LASTNAME, lastNameEditText.getText().toString());
                     contentValues.put(Academy_Const.ClientConst.PHONE_NUMBER, phoneEditText.getText().toString());
                     contentValues.put(Academy_Const.ClientConst.MAIL_ADDRESS, mailEditText.getText().toString());
                     contentValues.put(Academy_Const.ClientConst.CREDIT_CAR_NUMBER, creditCardEditText.getText().toString());
                     contentValues.put(Academy_Const.ClientConst.PASSWORD, passwordEditText.getText().toString());
+                    contentValues.put(Academy_Const.ClientConst.SECTOR , sectr);
 
                     new Task.AddClientTask(getApplicationContext()).execute(contentValues);
                     startActivity(new Intent(getApplicationContext(), LogInActivity.class));

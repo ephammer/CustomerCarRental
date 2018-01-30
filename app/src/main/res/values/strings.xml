@@ -64,6 +64,7 @@
     <string name="error_field_required">Error Field Required</string>
     <string name="error_invalid_email">Error Invalid Email</string>
     <string name="client_id">CLIENT_ID</string>
+    <string name="client_sector">CLIENT_SECTOR</string>
     <string name="command_id">Command ID:</string>
     <string name="action_command_list">Command List</string>
     <string name="map">maps</string>

@@ -16,55 +16,34 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp"
-        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:orientation="horizontal"
-
-            >
-
-            <Button
-                android:id="@+id/button_free_cars_by_branch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:background="@drawable/corner_all"
-                android:text="By branch" />
-
-            <Button
-                android:id="@+id/button_free_cars"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
 
 
-                android:background="@drawable/corner_left_top_right"
-                android:text="All"
-                app:layout_constraintEnd_toEndOf="@+id/button_free_cars_by_branch"
-                app:layout_constraintStart_toStartOf="@+id/button_free_cars_by_branch"
-                app:layout_constraintTop_toBottomOf="@+id/button_free_cars_by_branch" />
+
+
+
 
             <Button
                 android:id="@+id/button_free_cars_by_rangeKm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/corner_all"
-                android:text="Distance" />
+                android:background="@drawable/transition_effect_home_frag_right_button"
+                android:text="Find a car near you"
+                />
 
 
-        </LinearLayout>
-
-        <android.support.v7.widget.SearchView
-            android:layout_width="match_parent"
+        <android.widget.SearchView
+            android:id="@+id/search_view_home"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/corner_bottom_left_right"
-            android:gravity="left">
+            android:gravity="left"
+            android:background="@drawable/corner_bot_left_right"
+            >
 
-        </android.support.v7.widget.SearchView>
+        </android.widget.SearchView>
     </LinearLayout>
 
 

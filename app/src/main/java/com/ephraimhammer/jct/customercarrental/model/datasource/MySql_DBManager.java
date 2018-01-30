@@ -76,6 +76,7 @@ public class MySql_DBManager implements DB_Manager {
                 result.add(client);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putLong(context.getString(R.string.client_id), client.getClientId()).apply();
+                editor.putInt(context.getString(R.string.client_sector ), client.getSector()).apply();
 
             }
             return !(result.isEmpty());
@@ -295,7 +296,7 @@ public class MySql_DBManager implements DB_Manager {
 
         // the min is 0 , the max is 20.
         int minRange  = (sector - numberOfSector >  0) ? sector - numberOfSector :  0 ;
-        int maxRange  = (sector + numberOfSector > 20) ? sector + numberOfSector : 20 ;
+        int maxRange  = (sector + numberOfSector > 20) ? 20 :  sector + numberOfSector  ;
 
         ContentValues contentValues = new  ContentValues();
 
@@ -305,7 +306,7 @@ public class MySql_DBManager implements DB_Manager {
         List<Car> result = new ArrayList<>();
         try
         {
-            String str = PHPtools.POST(WEB_URL +  SLASH +"getFreeCarsByKilometerRange.php" , contentValues);
+            String str = PHPtools.POST(WEB_URL +  SLASH +"getFreeCarsByKilometereRange.php" , contentValues);
             JSONArray array = new  JSONObject(str).getJSONArray("car");
 
             JSONObject jsonObject;
