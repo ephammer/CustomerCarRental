@@ -407,7 +407,6 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
                 addCommandIntent.putExtra("carModelId" , car.getTypeModelID());
                 startActivity(addCommandIntent);
 
-
                 break;
             case MAIN_CAR_LIST_TO_DETAIL_CAR_AND_REDIRECT_BRANCH:
                 DETAIL_ITEM_TO_DISPLAY = CAR_DETAIL;
@@ -416,6 +415,10 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
                 displaydetail();
                 displayRedirect();
                 break;
+            case FREE_CAR_BY_KM:
+                CURRENT_TAG = TAG_FREE_CARS_LIST;
+
+
 
 
         }

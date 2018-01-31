@@ -1,7 +1,9 @@
 package com.ephraimhammer.jct.customercarrental.control.fragment;
 
 import android.app.ListFragment;
+import android.content.Context;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,7 +36,7 @@ public class CarFreeListFragment extends ListFragment {
     int sector = 0;
     boolean isUsedForMainFrag;
     MySql_DBManager Manager;
-
+    SharedPreferences preferences ;
     SEARCH_CAR_TYPE search_car_type;
 
 
@@ -84,6 +86,11 @@ public class CarFreeListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.free_cars_list_fragment, container, false);
         Manager = MySql_DBManager.getInstance();
+
+        preferences = getContext().getSharedPreferences(
+                getString(R.string.preference_login), Context.MODE_PRIVATE);
+
+        sector = preferences.getInt(getContext().getString(R.string.client_sector) , 5);
 
         // BroadcastReceiver
         IntentFilter filter = new IntentFilter("com.example.binyamin.android5778_0445_7734_01.BroadcastReceiver");

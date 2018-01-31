@@ -92,61 +92,73 @@ public class MySql_DBManager implements DB_Manager {
     @Override
     public long addClient(ContentValues client) {
 
-        try {
-            String result = PHPtools.POST(WEB_URL + SLASH + "add_client.php", client);
+        try
+        {
+            String result = PHPtools.POST(WEB_URL + SLASH +"add_client.php", client);
             long id = Long.parseLong(result);
 
             //Log.i("addClient: " , result);
             return id;
 
 
-        } catch (Exception e) {
-            Log.e("addClientException: \n", e.toString());
-            return -1;
+
+        }
+        catch (Exception e )
+        {
+            Log.e("addClientException: \n" , e.toString());
+            return  -1;
         }
     }
 
     @Override
     public boolean updateCarOnCloseCommand(ContentValues updateCar) {
-        try {
-            String result = PHPtools.POST(WEB_URL + SLASH + "update_carCloseCommand.php", updateCar);
+        try
+        {
+            String result = PHPtools.POST(WEB_URL + SLASH +"update_carCloseCommand.php", updateCar);
             long id = Long.parseLong(result);
 
             //Log.i("addClient: " , result);
             return true;
 
-        } catch (Exception e) {
-            Log.e("closeCommandExcept: \n", e.toString());
-            return false;
+        }
+        catch (Exception e )
+        {
+            Log.e("closeCommandExcept: \n" , e.toString());
+            return  false;
         }
     }
-
-    public boolean updateCarOnOpenCommand(ContentValues updateCar) {
-        try {
-            String result = PHPtools.POST(WEB_URL + SLASH + "update_carOpenCommand.php", updateCar);
+    public boolean updateCarOnOpenCommand(ContentValues updateCar)
+    {
+        try
+        {
+            String result = PHPtools.POST(WEB_URL + SLASH +"update_carOpenCommand.php", updateCar);
             long id = Long.parseLong(result);
 
             //Log.i("addClient: " , result);
             return true;
 
-        } catch (Exception e) {
-            Log.e("closeCommandExcept: \n", e.toString());
-            return false;
+        }
+        catch (Exception e )
+        {
+            Log.e("closeCommandExcept: \n" , e.toString());
+            return  false;
         }
     }
 
     @Override
     public List<Client> getClients() {
         List<Client> result = new ArrayList<>();
-        try {
-            String str = PHPtools.GET(WEB_URL + SLASH + "getClientList.php");
-            JSONArray array = new JSONObject(str).getJSONArray("cilents");
+        try
+        {
+            String str = PHPtools.GET(WEB_URL +  SLASH +"getClientList.php");
+            JSONArray array = new  JSONObject(str).getJSONArray("cilents");
 
             JSONObject jsonObject;
             ContentValues contentValues;
             Client client;
 
-            for (int i = 0; i < array.length(); i++) {
+            for (int i = 0 ; i < array.length(); i++)
+            {
                 jsonObject = array.getJSONObject(i);
                 contentValues = PHPtools.JsonToContentValues(jsonObject);
                 client = Academy_Const.ContentValuesToClient(contentValues);
@@ -154,11 +166,14 @@ public class MySql_DBManager implements DB_Manager {
                 result.add(client);
 
 
+
             }
             return result;
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return result;
@@ -168,15 +183,17 @@ public class MySql_DBManager implements DB_Manager {
     public List<Branch> getBranchs() {
 
         List<Branch> result = new ArrayList<>();
-        try {
-            String str = PHPtools.GET(WEB_URL + SLASH + "getBranchList.php");
+        try
+        {
+            String str = PHPtools.GET(WEB_URL + SLASH +"getBranchList.php");
             JSONArray array = new JSONObject(str).getJSONArray("branch");
 
             JSONObject jsonObject;
             ContentValues contentValues;
             Branch branch;
 
-            for (int i = 0; i < array.length(); i++) {
+            for (int i = 0 ; i < array.length(); i++)
+            {
                 jsonObject = array.getJSONObject(i);
                 contentValues = PHPtools.JsonToContentValues(jsonObject);
                 branch = Academy_Const.ContentValuesToBranch(contentValues);
@@ -187,7 +204,9 @@ public class MySql_DBManager implements DB_Manager {
             return result;
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return result;
@@ -198,15 +217,18 @@ public class MySql_DBManager implements DB_Manager {
         List<Car> result = new ArrayList<>();
 
 
-        try {
-            String str = PHPtools.GET(WEB_URL + SLASH + "getFreeCars.php");
-            JSONArray array = new JSONObject(str).getJSONArray("car");
+
+        try
+        {
+            String str = PHPtools.GET(WEB_URL +  SLASH +"getFreeCars.php" );
+            JSONArray array = new  JSONObject(str).getJSONArray("car");
 
             JSONObject jsonObject;
             ContentValues contentValues1;
             Car car;
 
-            for (int i = 0; i < array.length(); i++) {
+            for (int i = 0 ; i < array.length(); i++)
+            {
                 jsonObject = array.getJSONObject(i);
                 contentValues1 = PHPtools.JsonToContentValues(jsonObject);
                 car = Academy_Const.ContentValuesToCar(contentValues1);
@@ -217,7 +239,9 @@ public class MySql_DBManager implements DB_Manager {
             return result;
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return result;
@@ -228,17 +252,19 @@ public class MySql_DBManager implements DB_Manager {
         List<Car> result = new ArrayList<>();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Academy_Const.BranchConst.ID, idBranch);
+        contentValues.put(Academy_Const.BranchConst.ID , idBranch );
 
-        try {
-            String str = PHPtools.POST(WEB_URL + SLASH + "getFreeCarByBranchId.php", contentValues);
-            JSONArray array = new JSONObject(str).getJSONArray("car");
+        try
+        {
+            String str = PHPtools.POST(WEB_URL +  SLASH +"getFreeCarByBranchId.php" , contentValues);
+            JSONArray array = new  JSONObject(str).getJSONArray("car");
 
             JSONObject jsonObject;
             ContentValues contentValues1;
             Car car;
 
-            for (int i = 0; i < array.length(); i++) {
+            for (int i = 0 ; i < array.length(); i++)
+            {
                 jsonObject = array.getJSONObject(i);
                 contentValues1 = PHPtools.JsonToContentValues(jsonObject);
                 car = Academy_Const.ContentValuesToCar(contentValues1);
@@ -249,7 +275,9 @@ public class MySql_DBManager implements DB_Manager {
             return result;
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return result;
@@ -259,30 +287,31 @@ public class MySql_DBManager implements DB_Manager {
 
     // the first paramaeter is rangeKm: the  range in  Kilometers the client is looking for.
     // the second parameter is sector: the current sector of the current client.
-    public List<Car> getFreeCarsByKilometereRange(int rangeKm, int sector) {
+     public List<Car> getFreeCarsByKilometereRange(int rangeKm, int sector) {
 
         // One sector is 10 KM.
         int numberOfSector = rangeKm / 10;
 
         // the min is 0 , the max is 20.
-        int minRange = (sector - numberOfSector > 0) ? sector - numberOfSector : 0;
-        int maxRange = (sector + numberOfSector > 20) ? sector + numberOfSector : 20;
+        int minRange  = (sector - numberOfSector >  0) ? sector - numberOfSector :  0 ;
+        int maxRange  = (sector + numberOfSector > 20) ? 20 :sector + numberOfSector  ;
 
-        ContentValues contentValues = new ContentValues();
+        ContentValues contentValues = new  ContentValues();
 
-        contentValues.put("minRange", minRange);
-        contentValues.put("maxRange", maxRange);
+        contentValues.put("minRange" , minRange);
+        contentValues.put("maxRange" , maxRange);
 
         List<Car> result = new ArrayList<>();
         try {
-            String str = PHPtools.POST(WEB_URL + SLASH + "getFreeCarsByKilometerRange.php", contentValues);
+            String str = PHPtools.POST(WEB_URL + SLASH + "getFreeCarsByKilometereRange.php", contentValues);
             JSONArray array = new JSONObject(str).getJSONArray("car");
 
             JSONObject jsonObject;
             ContentValues contentValues1;
             Car car;
 
-            for (int i = 0; i < array.length(); i++) {
+            for (int i = 0 ; i < array.length(); i++)
+            {
                 jsonObject = array.getJSONObject(i);
                 contentValues1 = PHPtools.JsonToContentValues(jsonObject);
                 car = Academy_Const.ContentValuesToCar(contentValues1);
@@ -293,7 +322,9 @@ public class MySql_DBManager implements DB_Manager {
             return result;
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return result;
@@ -306,10 +337,11 @@ public class MySql_DBManager implements DB_Manager {
 
         CarModel carModel = new CarModel();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Academy_Const.CarModelConst.ID, id);
-        try {
-            String str = PHPtools.POST(WEB_URL + SLASH + "getCarModelById.php", contentValues);
-            JSONArray array = new JSONObject(str).getJSONArray("carModel");
+        contentValues.put(Academy_Const.CarModelConst.ID , id);
+        try
+        {
+            String str = PHPtools.POST(WEB_URL +  SLASH +"getCarModelById.php"  , contentValues);
+            JSONArray array = new  JSONObject(str).getJSONArray("carModel");
 
             JSONObject jsonObject;
             ContentValues contentValues1;
@@ -322,7 +354,9 @@ public class MySql_DBManager implements DB_Manager {
             return carModel;
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return carModel;
@@ -330,31 +364,37 @@ public class MySql_DBManager implements DB_Manager {
 
     @Override
     public long addCommand(ContentValues command) {
-        try {
-            String result = PHPtools.POST(WEB_URL + SLASH + "add_command.php", command);
+        try
+        {
+            String result = PHPtools.POST(WEB_URL + SLASH +"add_command.php", command);
             long id = Long.parseLong(result);
 
             //Log.i("addClient: " , result);
             return id;
 
-        } catch (Exception e) {
-            Log.e("addCommandException: \n", e.toString());
-            return -1;
+        }
+        catch (Exception e )
+        {
+            Log.e("addCommandException: \n" , e.toString());
+            return  -1;
         }
     }
 
     @Override
     public boolean closeCommand(ContentValues command) {
-        try {
-            String result = PHPtools.POST(WEB_URL + SLASH + "update_command.php", command);
+        try
+        {
+            String result = PHPtools.POST(WEB_URL + SLASH +"update_command.php", command);
             long id = Long.parseLong(result);
 
             //Log.i("addClient: " , result);
             return true;
 
-        } catch (Exception e) {
-            Log.e("closeCommandExcept: \n", e.toString());
-            return false;
+        }
+        catch (Exception e )
+        {
+            Log.e("closeCommandExcept: \n" , e.toString());
+            return  false;
         }
     }
 
@@ -367,14 +407,16 @@ public class MySql_DBManager implements DB_Manager {
 
 
         List<Command> result = new ArrayList<>();
-        try {
-            String str = PHPtools.POST(WEB_URL + SLASH + "getCommandByClientId.php", contentValues);
+        try
+        {
+            String str = PHPtools.POST(WEB_URL + SLASH +"getCommandByClientId.php" , contentValues);
             JSONArray array = new JSONObject(str).getJSONArray("command");
 
             JSONObject jsonObject;
             ContentValues contentValues1;
 
-            for (int i = 0; i < array.length(); i++) {
+            for (int i = 0 ; i < array.length(); i++)
+            {
                 jsonObject = array.getJSONObject(i);
                 contentValues1 = PHPtools.JsonToContentValues(jsonObject);
                 command = Academy_Const.ContentValuesToCommand(contentValues1);
@@ -385,7 +427,9 @@ public class MySql_DBManager implements DB_Manager {
             return result;
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return result;
@@ -395,10 +439,11 @@ public class MySql_DBManager implements DB_Manager {
     public Branch getBranchById(long id) {
         Branch branch = new Branch();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Academy_Const.CarModelConst.ID, id);
-        try {
-            String str = PHPtools.POST(WEB_URL + SLASH + "getBranchById.php", contentValues);
-            JSONArray array = new JSONObject(str).getJSONArray("branch");
+        contentValues.put(Academy_Const.CarModelConst.ID , id);
+        try
+        {
+            String str = PHPtools.POST(WEB_URL +  SLASH +"getBranchById.php"  , contentValues);
+            JSONArray array = new  JSONObject(str).getJSONArray("branch");
 
             JSONObject jsonObject;
             ContentValues contentValues1;
@@ -411,7 +456,9 @@ public class MySql_DBManager implements DB_Manager {
             return branch;
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return branch;
@@ -422,15 +469,18 @@ public class MySql_DBManager implements DB_Manager {
         List<Car> result = new ArrayList<>();
 
 
-        try {
-            String str = PHPtools.GET(WEB_URL + SLASH + "isCommandClosedWithinTen.php");
-            JSONArray array = new JSONObject(str).getJSONArray("car");
+
+        try
+        {
+            String str = PHPtools.GET(WEB_URL +  SLASH +"isCommandClosedWithinTen.php" );
+            JSONArray array = new  JSONObject(str).getJSONArray("car");
 
             JSONObject jsonObject;
             ContentValues contentValues1;
             Car car;
 
-            for (int i = 0; i < array.length(); i++) {
+            for (int i = 0 ; i < array.length(); i++)
+            {
                 jsonObject = array.getJSONObject(i);
                 contentValues1 = PHPtools.JsonToContentValues(jsonObject);
                 car = Academy_Const.ContentValuesToCar(contentValues1);

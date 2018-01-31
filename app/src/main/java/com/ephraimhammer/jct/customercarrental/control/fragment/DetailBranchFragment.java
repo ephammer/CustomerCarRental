@@ -92,6 +92,7 @@ public class DetailBranchFragment extends Fragment  {
 
         View view =  inflater.inflate(R.layout.details_branch_fragment, container , false);
         Manager = MySql_DBManager.getInstance();
+
         return view;
 
     }

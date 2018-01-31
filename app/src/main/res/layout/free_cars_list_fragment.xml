@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootViewCarFreeFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/shadow_b"
-    tools:context="com.ephraimhammer.jct.customercarrental.control.fragment.CarFreeListFragment">
+    tools:context="com.ephraimhammer.jct.customercarrental.control.fragment.CarFreeListFragment"
+    android:layout_margin="16dp"
+    >
 
 
 </ListView>
