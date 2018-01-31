@@ -67,5 +67,7 @@
     <string name="command_id">Command ID:</string>
     <string name="action_command_list">Command List</string>
     <string name="map">maps</string>
+    <string name="client_name">CLIENT_NAME</string>
+    <string name="close_command">Close Command</string>
 
 </resources>

@@ -1,15 +1,13 @@
 package com.ephraimhammer.jct.customercarrental.control.activity;
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ephraimhammer.jct.customercarrental.R;
-import com.ephraimhammer.jct.customercarrental.control.other.FreeCarReceiver;
 import com.ephraimhammer.jct.customercarrental.control.other.SEARCH_CAR_TYPE;
 import com.ephraimhammer.jct.customercarrental.control.other.Task;
-import com.ephraimhammer.jct.customercarrental.control.reservedCarUpdateService;
+import com.ephraimhammer.jct.customercarrental.control.other.reservedCarUpdateService;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 
 import java.util.List;

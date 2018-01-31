@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.ephraimhammer.jct.customercarrental.R;
 import com.ephraimhammer.jct.customercarrental.control.fragment.CarFreeListFragment;
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
     private DrawerLayout drawer;
 
     private Branch branch;
-    private long carId;
     private Car car;
 
     private SharedPreferences sharedPref;
@@ -217,7 +217,12 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment();
         }
-
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView =  navigationView.getHeaderView(0);
+        TextView nameNavHeader = headerView.findViewById(R.id.nav_header_name);
+        nameNavHeader.setText(sharedPref.getString(getString(R.string.client_name), "Error"));
+        TextView emailNavHeader = headerView.findViewById(R.id.nav_header_email);
+        emailNavHeader.setText(sharedPref.getString(getString(R.string.client_email), "Error"));
 
     }
 

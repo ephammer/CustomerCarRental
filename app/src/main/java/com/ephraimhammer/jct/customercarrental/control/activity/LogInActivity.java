@@ -153,6 +153,7 @@ public class LogInActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putBoolean(getString(R.string.signedIn), true).apply();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
                 finish();
             }
         }

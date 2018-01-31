@@ -1,4 +1,4 @@
-package com.ephraimhammer.jct.customercarrental.control;
+package com.ephraimhammer.jct.customercarrental.control.other;
 
 import android.app.IntentService;
 import android.content.Intent;

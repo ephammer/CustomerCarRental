@@ -9,10 +9,12 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ephraimhammer.jct.customercarrental.R;
+import com.ephraimhammer.jct.customercarrental.control.activity.EndCommandActivity;
 import com.ephraimhammer.jct.customercarrental.control.adapter.BranchSimpleAdapter;
 import com.ephraimhammer.jct.customercarrental.control.adapter.CarAdapter;
 import com.ephraimhammer.jct.customercarrental.control.adapter.CommandAdapter;
@@ -21,6 +23,7 @@ import com.ephraimhammer.jct.customercarrental.control.adapter.CarSimpleAdapter;
 import com.ephraimhammer.jct.customercarrental.control.adapter.CommandAdapter;
 import com.ephraimhammer.jct.customercarrental.model.datasource.MySql_DBManager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
+import com.ephraimhammer.jct.customercarrental.model.entities.COMMAND_STATE;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 import com.ephraimhammer.jct.customercarrental.model.entities.Client;
 import com.ephraimhammer.jct.customercarrental.model.entities.Command;
@@ -292,15 +295,27 @@ public class Task {
         @Override
         protected List<Command> doInBackground(Void... voids) {
             long id = sharedPref.getLong(context.getString(R.string.client_id), 31);
+            Log.d("CommandListTask: ",String.valueOf(id));
             return Manager.getCommandByClient(id);
         }
 
         @Override
         protected void onPostExecute(List<Command> commands) {
-            ArrayList<Command> commandArrayList = new ArrayList<>(commands);
+            final ArrayList<Command> commandArrayList = new ArrayList<>(commands);
             CommandAdapter commandAdapter = new CommandAdapter((Activity) context, commandArrayList);
             ListView listView = ((Activity) context).findViewById(R.id.list_view_command);
             listView.setAdapter(commandAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Command command = commandArrayList.get(position);
+                    if(command.getCommandState() == COMMAND_STATE.OPEN) {
+                        Intent intent = new Intent(context, EndCommandActivity.class);
+                        intent.putExtra("CommandID", command.getCommandId());
+                        context.startActivity(intent);
+                    }
+                }
+            });
         }
     }
 

@@ -18,7 +18,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".control.reservedCarUpdateService"
+            android:name=".control.other.reservedCarUpdateService"
             android:exported="false" />
 
         <activity
@@ -42,8 +42,10 @@
         <activity android:name=".control.activity.RegisterActivity" />
         <activity
             android:name=".control.activity.CommandListActivity"
-            android:parentActivityName=".control.activity.MainActivity"></activity>
-        <activity android:name=".control.activity.MapActivity"></activity>
+            android:parentActivityName=".control.activity.MainActivity" />
+        <activity android:name=".control.activity.MapActivity" />
+        <activity android:name=".control.activity.EndCommandActivity"
+            android:parentActivityName=".control.activity.CommandListActivity" />
     </application>
 
 </manifest>
