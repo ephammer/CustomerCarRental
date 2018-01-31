@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:id="@+id/rootViewBranchFragment"
-    android:layout_margin="4dp"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@drawable/shadow_b"
+tools:context="com.ephraimhammer.jct.customercarrental.control.fragment.CarFreeListFragment"
+    android:layout_marginLeft="16dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginRight="16dp"
     >
+    <LinearLayout
+        android:id="@+id/linear_layout_search_branch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:background="@drawable/corner_all"
+        android:padding="4dp"
+        android:layout_marginBottom="8dp"
+        >
 
 
-</ListView>
+        <SearchView
+            android:id="@+id/search_view_branch"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+
+            android:iconifiedByDefault="false"
+            android:queryHint="Choose a City..."
+            android:gravity="bottom|center"
+            android:background="@drawable/corner_right"
+            ></SearchView>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.35"
+            android:layout_height="match_parent"
+            android:text="Closest"
+            android:textSize="16dp"
+            android:gravity="center|bottom"
+            android:padding="2dp"
+            android:textColor="#174559"
+            />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rootViewBranchFragment"
+        >
+
+    </ListView>
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.ephraimhammer.jct.customercarrental.control.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,9 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ephraimhammer.jct.customercarrental.R;
+import com.ephraimhammer.jct.customercarrental.control.Filters.CarFilterListView;
 import com.ephraimhammer.jct.customercarrental.control.other.COMUNICATE_BTWN_FRAG;
 import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicateFragment;
 import com.ephraimhammer.jct.customercarrental.model.datasource.MySql_DBManager;
@@ -18,16 +23,20 @@ import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 import com.ephraimhammer.jct.customercarrental.model.entities.CarModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by binyamin on 25/01/2018.
  */
 
-public class CarSimpleAdapter extends ArrayAdapter<Car> {
+public class CarSimpleAdapter extends ArrayAdapter<Car> implements Filterable{
 
     IsAbleToCommunicateFragment isAbleToCommunicateFragment;
+    List<Car> carList;
+    Context mCtxt;
     boolean isusedForMainFrag;
     MySql_DBManager Manager ;
+    CarFilterListView carFilterListView;
 
     public void setIsusedForMainFrag(boolean isusedForMainFrag) {
         this.isusedForMainFrag = isusedForMainFrag;
@@ -38,7 +47,10 @@ public class CarSimpleAdapter extends ArrayAdapter<Car> {
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
+
         super(context, 0, CarArrayList);
+        carList = CarArrayList;
+        mCtxt = context;
 
     }
 
@@ -69,6 +81,7 @@ public class CarSimpleAdapter extends ArrayAdapter<Car> {
 
             @Override
             protected void onPostExecute(CarModel carModel) {
+
 
                 if(carModel != null) {
                     TextView mClasseTextView = finalMlistItemView.findViewById(R.id.classe_textView);
@@ -112,5 +125,13 @@ public class CarSimpleAdapter extends ArrayAdapter<Car> {
 
 
         return  mlistItemView;
+    }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        if(carFilterListView == null)
+            carFilterListView = new CarFilterListView(carList , mCtxt , this);
+        return carFilterListView;
     }
 }

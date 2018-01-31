@@ -9,9 +9,12 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ephraimhammer.jct.customercarrental.R;
+import com.ephraimhammer.jct.customercarrental.control.other.COMUNICATE_BTWN_FRAG;
+import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicateFragment;
 import com.ephraimhammer.jct.customercarrental.model.datasource.MySql_DBManager;
 import com.ephraimhammer.jct.customercarrental.model.entities.Car;
 import com.ephraimhammer.jct.customercarrental.model.entities.CarModel;
@@ -24,6 +27,8 @@ public class DetailCarFragment extends Fragment {
 
     private Car car;
     private MySql_DBManager Manager;
+    private IsAbleToCommunicateFragment isAbleToCommunicateFragment;
+
 
 
     public void setCar(Car car) {
@@ -50,6 +55,7 @@ public class DetailCarFragment extends Fragment {
             TextView mSmallLugageTxtView = getActivity().findViewById(R.id.BigLuggtextView);
             TextView mBigLugageTxtView = getActivity().findViewById(R.id.smalLugTextView);
             TextView mPassengersTxtView = getActivity().findViewById(R.id.passengerTextView);
+            Button mbuttonClose = getActivity().findViewById(R.id.closeCarButton);
 
             mBrandTextView.setText(carModel.getModelCompanyName().toString());
             mKilometreTextView.setText(String.valueOf(car.getKilometre()));
@@ -80,6 +86,15 @@ public class DetailCarFragment extends Fragment {
 
             mPassengersTxtView.setText(carModel.getPassengers().toString().toLowerCase());
 
+            mbuttonClose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    isAbleToCommunicateFragment = (IsAbleToCommunicateFragment)getActivity();
+                    isAbleToCommunicateFragment.sendData(COMUNICATE_BTWN_FRAG.CLOSE_DETAIL_REDIRECT);
+
+                }
+            });
+
 
 
         }
@@ -92,6 +107,8 @@ public class DetailCarFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.car_item_frag , container, false);
         Manager = MySql_DBManager.getInstance();
+        new CarModelByIdTask().execute(car.getTypeModelID());
+
         return view;
 
     }
@@ -100,7 +117,6 @@ public class DetailCarFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
 
-        new CarModelByIdTask().execute(car.getTypeModelID());
         super.onViewCreated(view, savedInstanceState);
     }
 }

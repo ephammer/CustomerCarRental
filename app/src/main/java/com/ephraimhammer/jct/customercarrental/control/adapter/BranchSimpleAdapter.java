@@ -9,22 +9,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.ephraimhammer.jct.customercarrental.R;
+import com.ephraimhammer.jct.customercarrental.control.Filters.BranchFilterListView;
+import com.ephraimhammer.jct.customercarrental.control.Filters.CarFilterListView;
 import com.ephraimhammer.jct.customercarrental.control.other.COMUNICATE_BTWN_FRAG;
 import com.ephraimhammer.jct.customercarrental.control.other.IsAbleToCommunicateFragment;
 import com.ephraimhammer.jct.customercarrental.model.entities.Branch;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by binyamin on 22/01/2018.
  */
 
-public class BranchSimpleAdapter extends ArrayAdapter<Branch> {
+public class BranchSimpleAdapter extends ArrayAdapter<Branch> implements Filterable {
 
-
+    List<Branch> branches;
+    Context mCtxt ;
+    BranchFilterListView branchFilterListView;
     IsAbleToCommunicateFragment isAbleToCommunicateFragment;
     int currentSector;
     SharedPreferences preferences;
@@ -35,6 +42,8 @@ public class BranchSimpleAdapter extends ArrayAdapter<Branch> {
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, branchArrayList);
+        branches = branchArrayList;
+        mCtxt = context;
     }
     @NonNull
     @Override
@@ -80,4 +89,12 @@ public class BranchSimpleAdapter extends ArrayAdapter<Branch> {
         distanceTextView.setText(String.valueOf(distanceKm));
         // so that it can be shown in the ListView
         return listItemView;    }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        if(branchFilterListView == null)
+            branchFilterListView = new BranchFilterListView(branches , mCtxt , this);
+        return branchFilterListView;
+    }
 }

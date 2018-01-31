@@ -5,7 +5,10 @@
     android:id="@+id/ROOTLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginRight="16dp"
 
     >
 
@@ -13,7 +16,7 @@
     <LinearLayout
         android:id="@+id/generalLayout"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="110dp"
         android:animateLayoutChanges="true"
         android:visibility="visible"
         android:background="@drawable/shadow_r_l"
@@ -23,12 +26,21 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.88">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <Button
+                android:id="@+id/closeCarButton"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:gravity="left|top"
+                android:background="@drawable/mr_dialog_close_light" />
 
             <ImageView
                 android:id="@+id/carIconImageView"
                 android:layout_width="146dp"
-                android:layout_height="wrap_content"
+                android:layout_height="94dp"
+                android:paddingBottom="10dp"
                 android:weightSum="1"
                 app:srcCompat="@drawable/mini_car_icon" />
         </LinearLayout>
@@ -53,7 +65,7 @@
                     android:id="@+id/brandtextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="6dp"
+                    android:layout_marginTop="4dp"
                     tools:text="Brand" />
 
 
@@ -83,16 +95,7 @@
 
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
 
-
-                    >
-
-                </LinearLayout>
 
             </LinearLayout>
         <LinearLayout
@@ -123,7 +126,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
 
-                    android:layout_margin="2dp"
 
                     android:gravity="left"
                     android:text="TextView" />
@@ -149,8 +151,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-
-                    android:layout_margin="2dp"
 
                     android:gravity="left"
                     android:text="TextView" />
@@ -178,7 +178,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
 
-                    android:layout_margin="2dp"
 
                     android:gravity="left"
                     android:text="5" />
@@ -195,7 +194,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
 
-                    android:layout_margin="2dp"
 
                     android:gravity="left"
                     android:text="5" />
@@ -224,7 +222,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
 
-                    android:layout_margin="2dp"
 
                     android:gravity="left"
                     android:text="TextView" />

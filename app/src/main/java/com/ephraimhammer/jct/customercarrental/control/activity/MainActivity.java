@@ -371,8 +371,11 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
 
         //reset the weight of the List layout.
         TableRow.LayoutParams params = new TableRow.LayoutParams();
-        params.weight = 0.4f;
+        params.weight = 1f;
         params.height = 0;
+        params.leftMargin = 16;
+        params.rightMargin = 16;
+        params.bottomMargin = 8;
         FrameLayout frameLayoutList = findViewById(R.id.frame);
         frameLayoutList.setLayoutParams(params);
         loadDetailFragment();
@@ -417,6 +420,10 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
                 break;
             case FREE_CAR_BY_KM:
                 CURRENT_TAG = TAG_FREE_CARS_LIST;
+            case CLOSE_DETAIL_REDIRECT:
+                resetDefaultConfiguration();
+
+
 
 
 

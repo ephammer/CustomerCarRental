@@ -61,7 +61,6 @@ public class HomeFragment extends Fragment {
         * Initialize UI Elements
         */
         mButtonFreeCarsByRangeKm = getView().findViewById(R.id.button_free_cars_by_rangeKm);
-        transitionFreeCarRangeButton = (TransitionDrawable) getView().findViewById(R.id.button_free_cars_by_rangeKm).getBackground();
         isAbleToCommunicateFragment = (IsAbleToCommunicateFragment)(getActivity());
         searchView = (SearchView)getView().findViewById(R.id.search_view_home);
 

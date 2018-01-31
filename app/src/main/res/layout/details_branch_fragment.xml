@@ -5,7 +5,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginRight="16dp"
     >
 
 
@@ -16,33 +19,40 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shadow_b"
         android:orientation="vertical"
-
-
         >
+
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/closeBranchButton"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:gravity="left|top"
+                android:background="@drawable/mr_dialog_close_light" />
 
             <TextView
                 android:id="@+id/detailBranchNameTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:paddingTop="2dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 tool:text="NAMEBRANCHE" />
+
             <TextView
                 android:id="@+id/mapTxtView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="right|bottom"
-                android:text="  maps  "
                 android:paddingRight="5dp"
-                android:textSize="12dp"
+                android:text="  maps  "
                 android:textColor="#3275b4"
-                />
+                android:textSize="12dp" />
 
 
         </LinearLayout>
@@ -50,7 +60,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            >
 
             <TextView
                 android:layout_width="0dp"
@@ -70,7 +83,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -89,7 +104,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -109,20 +126,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/amount_of_parking_places" />
+                android:text="Parking Place" />
 
             <TextView
                 android:id="@+id/textView_amount_parking_place"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 android:gravity="right" />
         </LinearLayout>
 

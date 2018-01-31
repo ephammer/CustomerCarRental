@@ -206,27 +206,7 @@ public class Task {
     }
 
 
-    public static class BranchSimpleListTask extends AsyncTask<Void, Void, List<Branch>> {
-        Activity activity;
 
-        public BranchSimpleListTask(Activity activity) {
-            this.activity = activity;
-        }
-
-        @Override
-        protected List<Branch> doInBackground(Void... voids) {
-            return Manager.getBranchs();
-        }
-
-        @Override
-        protected void onPostExecute(List<Branch> branches) {
-            ArrayList<Branch> branchArrayList = new ArrayList<>(branches);
-            BranchSimpleAdapter branchSimpleAdapter =
-                    new BranchSimpleAdapter(activity, branchArrayList);
-            ListView listView = (ListView) activity.findViewById(R.id.rootViewBranchFragment);
-            listView.setAdapter(branchSimpleAdapter);
-        }
-    }
 
     public static class BranchDetailsListTask extends AsyncTask<Void, Void, List<Branch>> {
 
