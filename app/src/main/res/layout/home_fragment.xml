@@ -1,52 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.ephraimhammer.jct.customercarrental.control.activity.MainActivity"
-    >
+    android:background="@drawable/backgroungmap">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
-        android:orientation="vertical"
-        android:gravity="center"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_free_cars_by_rangeKm"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bg_white_rounded"
+        android:text="Find a car near you"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
+    <android.widget.SearchView
+        android:id="@+id/search_view_home"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_pink_rounded"
+        android:gravity="left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_free_cars_by_rangeKm">
+
+    </android.widget.SearchView>
 
 
-
-
-
-            <Button
-                android:id="@+id/button_free_cars_by_rangeKm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/corner_none"
-                android:text="Find a car near you"
-                />
-
-
-        <android.widget.SearchView
-            android:id="@+id/search_view_home"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:background="@drawable/corner_bot_left_right"
-            >
-
-        </android.widget.SearchView>
-
-    </LinearLayout>
-
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

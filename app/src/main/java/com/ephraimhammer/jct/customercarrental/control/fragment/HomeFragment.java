@@ -31,10 +31,6 @@ public class HomeFragment extends Fragment {
     int rangeKm;
     SearchView searchView;
 
-
-    TransitionDrawable transitionFreeCarRangeButton ;
-     static final int transition = 1000;
-
      IsAbleToCommunicateFragment isAbleToCommunicateFragment;
 
 
@@ -61,6 +57,7 @@ public class HomeFragment extends Fragment {
         * Initialize UI Elements
         */
         mButtonFreeCarsByRangeKm = getView().findViewById(R.id.button_free_cars_by_rangeKm);
+
         isAbleToCommunicateFragment = (IsAbleToCommunicateFragment)(getActivity());
         searchView = (SearchView)getView().findViewById(R.id.search_view_home);
 
@@ -76,7 +73,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                transitionFreeCarRangeButton.startTransition(transition);
             }
         });
 

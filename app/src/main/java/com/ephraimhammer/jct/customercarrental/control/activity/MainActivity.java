@@ -355,12 +355,11 @@ public class MainActivity extends AppCompatActivity implements IsAbleToCommunica
     }
 
     public void composeEmail(String addresse) {
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_EMAIL, addresse);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
+        Intent Email = new Intent(Intent.ACTION_SEND);
+        Email.setType("text/email");
+        Email.putExtra(Intent.EXTRA_EMAIL, new String[] { addresse });
+        Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+        startActivity(Intent.createChooser(Email, "Send mail to Tap&Go:"));
     }
 
     public void displaydetail()
