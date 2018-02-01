@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ephraimhammer.jct.customercarrental.control.activity.WelcomeActivity">
+    tools:context="com.ephraimhammer.jct.customercarrental.control.activity.WelcomeActivity"
+    android:background="@drawable/backgroungmap">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,13 +23,16 @@
             android:id="@+id/button_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_in" />
+            android:text="@string/sign_in"
+            android:background="@drawable/bg_white_rounded"/>
 
         <Button
+            android:layout_marginTop="4dp"
             android:id="@+id/button_registration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register" />
+            android:text="@string/register"
+            android:background="@drawable/bg_white_rounded"/>
     </LinearLayout>
 
     <ImageView
@@ -37,9 +41,11 @@
         android:layout_height="150dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/car_rental_wheel_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
